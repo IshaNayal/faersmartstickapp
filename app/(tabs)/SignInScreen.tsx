@@ -90,7 +90,7 @@ export default function SignInScreen() {
             onChangeText={setEmail}
             autoCapitalize="none"
           />
-          <Ionicons name="person" size={20} color="#666" style={styles.inputIcon} />
+          <Ionicons name="person" size={20} color="#123255" style={styles.inputIcon} />
         </View>
 
         <Text style={styles.label}>Password</Text>
@@ -102,7 +102,7 @@ export default function SignInScreen() {
             value={password}
             onChangeText={setPassword}
           />
-          <Ionicons name="lock-closed" size={20} color="#666" style={styles.inputIcon} />
+          <Ionicons name="lock-closed" size={20} color="#123255" style={styles.inputIcon} />
         </View>
 
         {/* Checkbox Row */}
