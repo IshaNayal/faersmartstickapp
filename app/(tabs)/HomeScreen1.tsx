@@ -147,7 +147,12 @@ export default function HomeScreen() {
 
                 <View style={styles.toggleRow}>
                   <Text style={styles.toggleLabel}>Voice Mode</Text>
-                  <Switch value={voiceMode} onValueChange={setVoiceMode} />
+                  <Switch
+                    value={voiceMode}
+                    onValueChange={setVoiceMode}
+                    trackColor={{ false: "#3f3d3d", true: "#14b8c4" }} // valid false color
+                    thumbColor={voiceMode ? "#14b8c4" : "#ffffff"} // knob color
+                  />
                 </View>
 
                 <View style={styles.toggleRow}>
@@ -155,8 +160,11 @@ export default function HomeScreen() {
                   <Switch
                     value={vibrationMode}
                     onValueChange={setVibrationMode}
+                    trackColor={{ false: "#3f3d3d", true: "#14b8c4" }} // valid false color
+                    thumbColor={vibrationMode ? "#14b8c4" : "#ffffff"} // use vibrationMode here
                   />
                 </View>
+
 
                 {/* Battery Circle */}
                 <View style={styles.batteryContainer}>
@@ -198,7 +206,7 @@ export default function HomeScreen() {
         {selectedScreen === "settings" && <SettingsScreen />}
       </View>
     </View>
-  ); 
+  );
 }
 
 const styles = StyleSheet.create({
@@ -219,18 +227,18 @@ const styles = StyleSheet.create({
   centerBox: { flex: 1, justifyContent: "flex-end", alignItems: "center" },
   connectBtn: { backgroundColor: "#14b8c4", paddingVertical: 38, paddingHorizontal: 35, borderRadius: 12, marginHorizontal: 8, marginBottom: 350 },
   connectText: { color: "#fff", fontSize: 27, fontWeight: "600" },
-  popupCard: { backgroundColor: "#fff", padding: 24, borderRadius: 14, alignItems: "center", width: "85%", marginBottom: 170 },
-  popupText: { color: "#7c0a0aff", textAlign: "center", marginVertical: 14, fontSize: 15, lineHeight: 20 },
-  enableBtn: { backgroundColor: "#14b8c4", paddingVertical: 14, paddingHorizontal: 25, borderRadius: 10, marginTop: 20 },
-  enableText: { color: "#fff", fontWeight: "600", fontSize: 15 },
+  popupCard: { backgroundColor: "#fff", paddingHorizontal: 35, borderRadius: 12, alignItems: "center", width: "85%", height: 300, marginBottom: 300, marginHorizontal: 8, },
+  popupText: { color: "#ff0000ff", textAlign: "center", marginVertical: 14, fontSize: 20, lineHeight: 20 },
+  enableBtn: { backgroundColor: "#14b8c4", paddingVertical: 14, paddingHorizontal: 25, borderRadius: 10, marginTop: 14 },
+  enableText: { color: "#fff", fontWeight: "600", fontSize: 20 },
   statusContainer: { marginTop: 10, marginBottom: 20 },
   statusBox: { backgroundColor: "#1e293b", padding: 14, borderRadius: 10, marginBottom: 60 },
-  statusText: { fontSize: 16, color: "#fff" },
+  statusText: { fontSize: 20, color: "#fff", fontWeight: "bold" },
   obstacleBox: { backgroundColor: "#1e293b", paddingVertical: 16, paddingHorizontal: 14, borderRadius: 10, alignItems: "center", marginBottom: 60 },
-  obstacleText: { fontSize: 17, color: "red", fontWeight: "bold", marginBottom: 6 },
-  obstacleDistance: { fontSize: 15, color: "#fff" },
+  obstacleText: { fontSize: 20, color: "red", fontWeight: "bold", marginBottom: 6, },
+  obstacleDistance: { fontSize: 20, color: "#fff" },
   toggleRow: { flexDirection: "row", justifyContent: "space-between", backgroundColor: "#1e293b", paddingVertical: 14, paddingHorizontal: 18, borderRadius: 10, alignItems: "center", marginBottom: 60 },
-  toggleLabel: { color: "#fff", fontSize: 16 },
+  toggleLabel: { color: "#ffffffff", fontSize: 20, fontWeight: "bold" },
   batteryContainer: { marginLeft: -20, marginTop: -30, marginBottom: 40, alignItems: "center", justifyContent: "center" },
-  batteryText: { position: "absolute", color: "#fff", fontSize: 15, fontWeight: "600" },
+  batteryText: { position: "absolute", color: "#fff", fontSize: 20, fontWeight: "600" },
 });
