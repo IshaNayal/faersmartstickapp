@@ -5,18 +5,22 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 export default function LinkScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>PathPilot</Text>
-      <View style={styles.content}>
+      {/* Top section */}
+      <View style={styles.topSection}>
+       
         <Text style={styles.title}>Connection</Text>
-        <View style={styles.iconContainer}>
-          <Image
-            style={styles.icon}
-            source={{ uri: "https://img.icons8.com/ios-filled/50/14b8c4/sos.png" }}
-          />
-        </View>
+      </View>
+
+      {/* Middle section */}
+      <View style={styles.content}>
+        <Image
+          style={styles.icon}
+          source={{ uri: "https://img.icons8.com/ios-filled/50/14b8c4/sos.png" }}
+        />
         <Text style={styles.description}>Connect Smart Stick</Text>
         <Text style={styles.status}>Status: Connected</Text>
         <Text style={styles.deviceInfo}>Device: Stick-ABC123</Text>
+
         <TouchableOpacity style={styles.button}>
           <Text style={styles.buttonText}>Pair Device</Text>
         </TouchableOpacity>
@@ -32,62 +36,65 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#0a1931",
-    padding: 20,
+    paddingHorizontal: 1, // match LocationScreen
+  },
+  topSection: {
+    alignItems: "center",
+    marginTop: 80, // same top margin as stepMarginTop[1]
+    marginBottom: 40,
   },
   header: {
     color: "#14b8c4",
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: "bold",
-    textAlign: "center",
-    marginBottom: 20,
-  },
-  content: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
   },
   title: {
     color: "#fff",
-    fontSize: 28,
+    fontSize: 23,
     fontWeight: "bold",
-    textAlign: "center",
-    marginBottom: 20,
+    marginTop: 10,
   },
-  iconContainer: {
-    marginVertical: 30,
+  content: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "flex-start",
+    paddingTop: 20,
   },
   icon: {
-    width: 50,
-    height: 50,
+    width: 60,
+    height: 60,
     tintColor: "#14b8c4",
+    marginVertical: 60,
   },
   description: {
     color: "#fff",
-    fontSize: 16,
+    fontSize: 20,
     textAlign: "center",
-    marginBottom: 10,
+    marginBottom: 8,
   },
   status: {
     color: "#14b8c4",
-    fontSize: 16,
-    marginVertical: 10,
+    fontSize: 20,
+    marginBottom: 4,
   },
   deviceInfo: {
     color: "#fff",
-    fontSize: 14,
+    fontSize: 20,
     marginBottom: 20,
   },
   button: {
     backgroundColor: "#14b8c4",
-    padding: 15,
-    borderRadius: 5,
-    width: "80%",
+    width: 150, // match LocationScreen button width
+    paddingVertical: 20, // match LocationScreen padding
+    borderRadius: 18, // match LocationScreen borderRadius
+    marginHorizontal: 4,
     alignItems: "center",
-    marginVertical: 10,
+    marginVertical: 8,
   },
   buttonText: {
-    color: "#000000ff",
+    color: "#000",
     fontSize: 16,
     fontWeight: "bold",
   },
 });
+
