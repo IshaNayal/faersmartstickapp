@@ -1,4 +1,5 @@
 // LocationScreen.tsx
+
 import React, { useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
@@ -13,11 +14,10 @@ export default function LocationScreen() {
     if (step > 1) setStep((prev) => (prev - 1) as 1 | 2 | 3);
   };
 
-  // Custom top margin for each step
   const stepMarginTop = {
-    1: 80, // Step 1 pushed down
-    2: 40, // Step 2 slightly down
-    3: 40, // Step 3 slightly down
+    1: 80,
+    2: 40,
+    3: 40,
   };
 
   return (
@@ -102,7 +102,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#0a1931",
     paddingHorizontal: 1,
-    paddingTop: -70,
   },
   content: {
     flex: 1,
@@ -110,18 +109,16 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
   title: {
-    fontSize: 25,
+    fontSize: 20,
     fontWeight: "bold",
     color: "#fff",
-    //textAlign: "center",
-    marginBottom: 15,
-    paddingHorizontal: 10,
+    marginBottom: 80,
+    paddingHorizontal: 20,
   },
   subtitle: {
-    fontSize: 25,
-    color: "#aaa",
-    //textAlign: "center",
-    marginBottom: 40,
+    fontSize: 20,
+    color: "#fff",
+    marginBottom: 80,
     paddingHorizontal: 20,
   },
   image: {
@@ -129,34 +126,42 @@ const styles = StyleSheet.create({
     height: 150,
     marginBottom: 50,
   },
+  row: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center", // ensures same height
+    marginTop: 20,
+  },
+  // Primary (Next/Done/Start)
   button: {
     backgroundColor: "#00c4cc",
+    width: 120, // fixed width
     paddingVertical: 20,
-    paddingHorizontal: 40,
     borderRadius: 18,
-    marginHorizontal: 8,
+    marginHorizontal: 4,
+    alignItems: "center",
   },
   buttonText: {
     color: "#fff",
     fontWeight: "bold",
-    fontSize: 29,
+    fontSize: 20,
   },
+  // Secondary (Back)
   secondaryButton: {
-    paddingVertical: 14,
-    paddingHorizontal: 40,
-    borderRadius: 12,
     backgroundColor: "#1c2e4a",
-    marginHorizontal: 8,
+    width: 120, // same fixed width
+    paddingVertical: 20,
+    borderRadius: 18,
+    marginHorizontal: 4,
+    alignItems: "center",
   },
   secondaryText: {
-    color: "#fff",
-    fontSize: 29,
-  },
-  row: {
-    flexDirection: "row",
-    marginTop: 20,
+    fontWeight: "bold",
+    color: "#ff0000",
+    fontSize: 20,
   },
   singleButtonWrap: {
     marginTop: 30,
   },
 });
+
