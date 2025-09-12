@@ -134,3 +134,7 @@ const styles = StyleSheet.create({
   logoutText: { color: "#000", fontSize: 16, fontWeight: "bold" },
 });
 
+
+
+
+
