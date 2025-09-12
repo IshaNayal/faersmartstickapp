@@ -1,4 +1,5 @@
 // app/AlertScreen.tsx
+
 import React, { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
@@ -54,7 +55,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: "#fff",
-    fontSize: 28,
+    fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",
     marginBottom: 40,
@@ -62,14 +63,15 @@ const styles = StyleSheet.create({
   },
   description: {
     color: "#fff",
-    fontSize: 16,
+    fontSize: 20,
     textAlign: "center",
     marginVertical: 10,
   },
   subTitle: {
     color: "#fff",
-    fontSize: 18,
-    marginVertical: 20,
+    fontSize: 20,
+    textAlign: "center",
+    marginVertical: 10,
   },
   iconContainer: {
     marginVertical: 30,
@@ -91,7 +93,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   buttonText: {
-    color: "#000000ff",
+    color: "#ffffffff",
     fontSize: 16,
     fontWeight: "bold",
   },
