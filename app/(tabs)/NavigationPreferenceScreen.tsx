@@ -42,5 +42,5 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: "#333",
   },
-  rowText: { color: "#fff", fontSize: 15 },
+  rowText: { color: "#fff", fontSize: 18, fontWeight: "600"  },
 });
