@@ -29,11 +29,11 @@ export default function SettingsScreen() {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.mainContent}>
-        <Text style={styles.title}>Settings</Text>
+        <Text style={styles.title}></Text>
 
         {/* Profile */}
         <View style={styles.profileCard}>
-          <Ionicons name="person-circle" size={55} color="#14b8c4" />
+          <Ionicons name="person-circle" size={65} color="#14b8c4" />
           <View>
             <Text style={styles.email}>{userEmail || "No email"}</Text>
             <Text style={styles.username}></Text>
@@ -48,7 +48,7 @@ export default function SettingsScreen() {
           onPress={() => router.push("/EditProfileScreen")}
         >
           <Text style={styles.rowText}>Edit Profile</Text>
-          <Ionicons name="chevron-forward" size={20} color="#fff" />
+          <Ionicons name="chevron-forward" size={20} color="#fff"   />
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -98,9 +98,9 @@ const styles = StyleSheet.create({
   mainContent: { flex: 1, padding: 0 },
   title: {
     color: "#fff",
-    fontSize: 22,
+    fontSize: 29,
     fontWeight: "bold",
-    marginBottom: 20,
+    marginBottom: 28,
   },
   profileCard: {
     flexDirection: "row",
@@ -108,13 +108,14 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     borderBottomWidth: 1,
     borderBottomColor: "#333",
-    paddingBottom: 15,
+    paddingBottom: 35,
   },
-  email: { color: "#fff", fontSize: 16, fontWeight: "600" },
-  username: { color: "#aaa", fontSize: 14 },
+  email: { color: "#fff", fontSize: 17, fontWeight: "600" },
+  username: { color: "#aaa", fontSize: 20 },
   sectionTitle: {
     color: "#fff",
-    fontSize: 14,
+    fontSize: 20,
+    fontWeight: "bold",
     marginTop: 15,
     marginBottom: 10,
     borderBottomWidth: 1,
@@ -129,5 +130,5 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: "#333",
   },
-  rowText: { color: "#fff", fontSize: 15 },
+  rowText: { color: "#fff", fontSize: 15, fontWeight: "600" },
 });
