@@ -92,7 +92,7 @@ export default function SignUpScreen() {
             value={name}
             onChangeText={setName}
           />
-          <Ionicons name="person" size={22} color="#123255" style={styles.icon} />
+          <Ionicons name="person" size={22} color="#052950ff" style={styles.icon} />
         </View>
 
         <View style={styles.inputRow}>
@@ -104,7 +104,7 @@ export default function SignUpScreen() {
             keyboardType="email-address"
             autoCapitalize="none"
           />
-          <Ionicons name="mail" size={22} color="#123255" style={styles.icon} />
+          <Ionicons name="mail" size={22} color="#052950ff" style={styles.icon} />
         </View>
 
         <View style={styles.inputRow}>
@@ -115,7 +115,7 @@ export default function SignUpScreen() {
             onChangeText={setPhone}
             keyboardType="phone-pad"
           />
-          <Ionicons name="call" size={22} color="#123255" style={styles.icon} />
+          <Ionicons name="call" size={22} color="#052950ff" style={styles.icon} />
         </View>
 
         <View style={styles.inputRow}>
@@ -129,7 +129,7 @@ export default function SignUpScreen() {
           <Ionicons
             name="lock-closed"
             size={22}
-            color="#123255"
+            color="#052950ff"
             style={styles.icon}
           />
         </View>
@@ -145,7 +145,7 @@ export default function SignUpScreen() {
           <Ionicons
             name="lock-closed"
             size={22}
-            color="#123255"
+            color="#052950ff"
             style={styles.icon}
           />
         </View>
@@ -166,7 +166,7 @@ export default function SignUpScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#123255ff",
+    backgroundColor: "#0a1931",
     alignItems: "center",
     justifyContent: "flex-start",
     paddingTop: 40,
@@ -237,3 +237,4 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 });
+
