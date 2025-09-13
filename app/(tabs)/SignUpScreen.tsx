@@ -57,7 +57,7 @@ export default function SignUpScreen() {
       setPassword("");
       setConfirmPassword("");
 
-      // 🚀 Pass values to WelcomeScreen
+     
       setTimeout(() => {
         router.push({
           pathname: "/WelcomeScreen",
@@ -162,7 +162,7 @@ export default function SignUpScreen() {
   );
 }
 
-// styles
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
     alignItems: "stretch",
   },
   cardTitle: { fontSize: 30, fontWeight: "bold", marginBottom: 15 },
-  // inputs with icons
+ 
   inputRow: {
     flexDirection: "row",
     alignItems: "center",
@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   icon: {
-    marginLeft: 8, // space between TextInput and icon
+    marginLeft: 8, 
   },
   signInButton: {
     backgroundColor: "#00c4cc",
