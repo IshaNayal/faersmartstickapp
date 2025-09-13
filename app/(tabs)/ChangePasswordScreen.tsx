@@ -10,11 +10,11 @@ export default function ChangePasswordScreen() {
   const auth = getAuth();
 
   const [email, setEmail] = useState("");
-  const [currentPassword, setCurrentPassword] = useState(""); // for re-authentication
+  const [currentPassword, setCurrentPassword] = useState(""); 
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  // Pre-fill the email if user is signed in
+  
   useEffect(() => {
     const user = auth.currentUser;
     if (user && user.email) setEmail(user.email);
@@ -33,11 +33,11 @@ export default function ChangePasswordScreen() {
     }
 
     try {
-      // Re-authenticate user with current password
+      
       const credential = EmailAuthProvider.credential(user.email!, currentPassword);
       await reauthenticateWithCredential(user, credential);
 
-      // Update password
+      
       await updatePassword(user, newPassword);
       Alert.alert("Success", "Password updated successfully!");
       router.back();
@@ -48,7 +48,7 @@ export default function ChangePasswordScreen() {
 
   return (
     <View style={styles.container}>
-      {/* Back Arrow */}
+      { }
       <TouchableOpacity style={styles.backBtn} onPress={() => router.back()}>
         <Ionicons name="arrow-back" size={28} color="#fff" />
       </TouchableOpacity>
@@ -61,7 +61,7 @@ export default function ChangePasswordScreen() {
         placeholderTextColor="#aaa"
         keyboardType="email-address"
         value={email}
-        editable={false} // can't change email here
+        editable={false} 
       />
       <TextInput
         style={styles.input}
