@@ -1,4 +1,4 @@
-// app/SettingsScreen.tsx  
+
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router"; 
 import React, { useState, useEffect } from "react";
@@ -10,16 +10,16 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { getAuth } from "firebase/auth"; // ✅ Firebase Auth
+import { getAuth } from "firebase/auth"; 
 
 export default function SettingsScreen() {
   const router = useRouter();
 
-  // Dynamic email
+  
   const [userEmail, setUserEmail] = useState<string>("");
   const [notificationsEnabled, setNotificationsEnabled] = useState(false);
 
-  // Get current user email from Firebase Auth
+  
   useEffect(() => {
     const auth = getAuth();
     const user = auth.currentUser;
@@ -31,7 +31,7 @@ export default function SettingsScreen() {
       <ScrollView style={styles.mainContent}>
         <Text style={styles.title}></Text>
 
-        {/* Profile */}
+        { }
         <View style={styles.profileCard}>
           <Ionicons name="person-circle" size={65} color="#14b8c4" />
           <View>
@@ -40,7 +40,7 @@ export default function SettingsScreen() {
           </View>
         </View>
 
-        {/* Account settings */}
+        { }
         <Text style={styles.sectionTitle}>Account settings</Text>
 
         <TouchableOpacity
@@ -59,7 +59,7 @@ export default function SettingsScreen() {
           <Ionicons name="chevron-forward" size={20} color="#fff" />
         </TouchableOpacity>
 
-        {/* Notifications toggle */}
+        { }
         <View style={styles.row}>
           <Text style={styles.rowText}>Notification</Text>
           <Switch
@@ -78,7 +78,7 @@ export default function SettingsScreen() {
           <Ionicons name="chevron-forward" size={20} color="#fff" />
         </TouchableOpacity>
 
-        {/* More */}
+        { }
         <Text style={styles.sectionTitle}>More</Text>
         <TouchableOpacity style={styles.row}>
           <Text style={styles.rowText}>Privacy & Policy</Text>
