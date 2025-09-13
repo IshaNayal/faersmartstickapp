@@ -8,7 +8,7 @@ export default function Index() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      router.replace("/WelcomeScreen"); // Navigate to Welcome after 2s
+      router.replace("/WelcomeScreen");
     }, 2000);
 
     return () => clearTimeout(timer);
@@ -26,27 +26,27 @@ export default function Index() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#062860ff", // dark navy background
+    backgroundColor: "#062860ff", 
     justifyContent: "center",
     alignItems: "center",
   },
   logoContainer: {
     width: 120,
     height: 120,
-    borderRadius: 60, // perfect circle
-    backgroundColor: "#f0f0f0", // light gray/white
+    borderRadius: 60, 
+    backgroundColor: "#f0f0f0", 
     justifyContent: "center",
     alignItems: "center",
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.25,
     shadowRadius: 4,
-    elevation: 5, // shadow for Android
+    elevation: 5, 
   },
   logoText: {
     fontSize: 20,
     fontWeight: "bold",
-    color: "#052950ff", // dark navy text
+    color: "#052950ff", 
   },
 });
 
