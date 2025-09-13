@@ -31,12 +31,12 @@ export default function HomeScreen() {
   useEffect(() => {
     const BackHandlerListener = BackHandler.addEventListener(
       "hardwareBackPress",
-      () => true // Prevent default back action
+      () => true 
     );
     return () => BackHandlerListener.remove();
   }, []);
 
-  // 🔹 Animated values for sidebar buttons
+  
   const scales = {
     home: useRef(new Animated.Value(1)).current,
     location: useRef(new Animated.Value(1)).current,
@@ -58,7 +58,7 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      {/* Sidebar */}
+      { }
       <View style={styles.sidebar}>
         <View style={styles.sidebarIcons}>
           {(
@@ -92,7 +92,7 @@ export default function HomeScreen() {
         </View>
       </View>
 
-      {/* Main Content */}
+      { }
       <View style={styles.mainContent}>
         <Text style={styles.welcome}>PathPilot</Text>
 
@@ -150,8 +150,8 @@ export default function HomeScreen() {
                   <Switch
                     value={voiceMode}
                     onValueChange={setVoiceMode}
-                    trackColor={{ false: "#3f3d3d", true: "#14b8c4" }} // valid false color
-                    thumbColor={voiceMode ? "#14b8c4" : "#ffffff"} // knob color
+                    trackColor={{ false: "#3f3d3d", true: "#14b8c4" }} 
+                    thumbColor={voiceMode ? "#14b8c4" : "#ffffff"} 
                   />
                 </View>
 
@@ -160,13 +160,13 @@ export default function HomeScreen() {
                   <Switch
                     value={vibrationMode}
                     onValueChange={setVibrationMode}
-                    trackColor={{ false: "#3f3d3d", true: "#14b8c4" }} // valid false color
-                    thumbColor={vibrationMode ? "#14b8c4" : "#ffffff"} // use vibrationMode here
+                    trackColor={{ false: "#3f3d3d", true: "#14b8c4" }} 
+                    thumbColor={vibrationMode ? "#14b8c4" : "#ffffff"} 
                   />
                 </View>
 
 
-                {/* Battery Circle */}
+                { }
                 <View style={styles.batteryContainer}>
                   <Svg height="160" width="160" viewBox="0 0 160 160">
                     <Circle
