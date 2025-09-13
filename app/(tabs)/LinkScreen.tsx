@@ -1,17 +1,17 @@
-// app/LinkScreen.tsx 
+
 import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function LinkScreen() {
   return (
     <View style={styles.container}>
-      {/* Top section */}
+      { }
       <View style={styles.topSection}>
        
         <Text style={styles.title}>Connection</Text>
       </View>
 
-      {/* Middle section */}
+      { }
       <View style={styles.content}>
         <Image
           style={styles.icon}
@@ -36,11 +36,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#0a1931",
-    paddingHorizontal: 1, // match LocationScreen
+    paddingHorizontal: 1, 
   },
   topSection: {
     alignItems: "center",
-    marginTop: 80, // same top margin as stepMarginTop[1]
+    marginTop: 80, 
     marginBottom: 40,
   },
   header: {
@@ -84,9 +84,9 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: "#14b8c4",
-    width: 150, // match LocationScreen button width
-    paddingVertical: 20, // match LocationScreen padding
-    borderRadius: 18, // match LocationScreen borderRadius
+    width: 150, 
+    paddingVertical: 20, 
+    borderRadius: 18,
     marginHorizontal: 4,
     alignItems: "center",
     marginVertical: 8,
