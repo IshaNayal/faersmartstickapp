@@ -1,4 +1,4 @@
-//   app/Layout.tsx
+
 import React from "react";
 import { StyleSheet, View } from "react-native";
 
