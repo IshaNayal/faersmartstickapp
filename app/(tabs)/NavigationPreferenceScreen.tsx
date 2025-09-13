@@ -10,24 +10,24 @@ export default function NavigationPreferencesScreen() {
 
   return (
     <View style={styles.container}>
-      {/* Back Arrow */}
+      { }
       <TouchableOpacity style={styles.backBtn} onPress={() => router.back()}>
         <Ionicons name="arrow-back" size={28} color="#fff" />
       </TouchableOpacity>
 
-      {/* Settings Header */}
+      { }
       <Text style={styles.header}></Text>
 
-      {/* Profile section */}
+      { }
       
 
       
 
-      {/* Navigation Preferences */}
+      { }
       <Text style={[styles.sectionTitle, { marginTop: -9 }]}>Navigation Preferences</Text>
 
 
-      {/* Voice Guidance Switch */}
+      { }
       <View style={styles.row}>
         <Text style={styles.rowText}>Voice Guidance</Text>
         <Switch
@@ -38,7 +38,7 @@ export default function NavigationPreferencesScreen() {
         />
       </View>
 
-      {/* Vibration Alerts Switch */}
+      { }
       <View style={styles.row}>
         <Text style={styles.rowText}>Vibration Alerts</Text>
         <Switch
@@ -49,7 +49,7 @@ export default function NavigationPreferencesScreen() {
         />
       </View>
 
-      {/* Mode of Travel */}
+      { }
       <Text style={[styles.sectionTitle, { marginTop: 30 }]}>Mode of Travel</Text>
 
       <TouchableOpacity style={styles.modeBtn}>
