@@ -29,7 +29,7 @@ export default function SignInScreen() {
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
 
-  // 🔹 Sign In
+ 
   const handleSignIn = async () => {
     try {
       if (!email || !password) {
@@ -46,7 +46,7 @@ export default function SignInScreen() {
     }
   };
 
-  // 🔹 Forgot Password
+  
   const handleForgotPassword = async () => {
     if (!email) {
       Alert.alert("Enter Email", "Please enter your email to reset password.");
@@ -64,7 +64,7 @@ export default function SignInScreen() {
 
   return (
     <View style={styles.container}>
-      {/* Top header */}
+      { }
       <View style={styles.headerRow}>
         <TouchableOpacity onPress={() => navigation.navigate("WelcomeScreen")}>
           <Ionicons name="arrow-back" size={28} color="#ffffff" />
@@ -72,12 +72,12 @@ export default function SignInScreen() {
         <Text style={styles.header}> Welcome</Text>
       </View>
 
-      {/* Logo */}
+      { }
       <View style={styles.logoContainer}>
         <Text style={styles.logo}>LOGO</Text>
       </View>
 
-      {/* Card */}
+      { }
       <View style={styles.card}>
         <Text style={styles.cardTitle}>Sign In</Text>
 
@@ -105,7 +105,7 @@ export default function SignInScreen() {
           <Ionicons name="lock-closed" size={20} color="#123255" style={styles.inputIcon} />
         </View>
 
-        {/* Checkbox Row */}
+        { }
         <View style={styles.checkboxRow}>
           <Checkbox
             status={rememberMe ? "checked" : "unchecked"}
