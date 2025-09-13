@@ -7,7 +7,7 @@ export default function Index() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      router.replace("/WelcomeScreen"); // Navigate to Welcome after 2s
+      router.replace("/WelcomeScreen"); 
     }, 2000);
 
     return () => clearTimeout(timer);
