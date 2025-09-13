@@ -31,14 +31,14 @@ export default function WelcomeScreen() {
         <View style={styles.buttonGroup}>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => router.push("/SignInScreen")} // ✅
+            onPress={() => router.push("/SignInScreen")} 
           >
             <Text style={styles.buttonText}>Sign In</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={styles.button}
-            onPress={() => router.push("/(tabs)/SignUpScreen")} // ✅
+            onPress={() => router.push("/(tabs)/SignUpScreen")} 
           >
             <Text style={styles.buttonText}>Sign Up</Text>
           </TouchableOpacity>
