@@ -12,7 +12,7 @@ export default function EditProfileScreen() {
   const [userEmail, setUserEmail] = useState("");
   const [userPhone, setUserPhone] = useState("");
 
-  // Fetch user data from Firestore on mount
+  
   useEffect(() => {
     const fetchUserData = async () => {
       const auth = getAuth();
@@ -32,23 +32,23 @@ export default function EditProfileScreen() {
     fetchUserData();
   }, []);
 
-  // Save updated info persistently
+  
   const handleSave = async () => {
     try {
       const auth = getAuth();
       const user = auth.currentUser;
       if (!user) return;
 
-      // 1️⃣ Update Firestore
+     
       const docRef = doc(db, "users", user.uid);
       await setDoc(docRef, {
         name: userName,
         email: userEmail,
         phone: userPhone,
         uid: user.uid,
-      }, { merge: true }); // merge:true ensures only changed fields are updated
+      }, { merge: true }); 
 
-      // 2️⃣ Update Firebase Auth displayName and email
+     
       await updateProfile(user, { displayName: userName });
       if (user.email !== userEmail) {
         await updateEmail(user, userEmail);
@@ -60,7 +60,7 @@ export default function EditProfileScreen() {
     }
   };
 
-  // Logout function
+  
   const handleLogout = () => {
     Alert.alert(
       "Log Out",
