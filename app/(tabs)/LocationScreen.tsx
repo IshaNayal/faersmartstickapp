@@ -1,4 +1,3 @@
-// LocationScreen.tsx
 
 import React, { useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
@@ -22,7 +21,7 @@ export default function LocationScreen() {
 
   return (
     <View style={styles.container}>
-      {/* Step 1 */}
+      { }
       {step === 1 && (
         <View style={[styles.content, { marginTop: stepMarginTop[1] }]}>
           <Text style={styles.title}>
@@ -40,7 +39,7 @@ export default function LocationScreen() {
         </View>
       )}
 
-      {/* Step 2 */}
+      { }
       {step === 2 && (
         <View style={[styles.content, { marginTop: stepMarginTop[2] }]}>
           <Text style={styles.title}>Real-time location detected</Text>
@@ -67,7 +66,7 @@ export default function LocationScreen() {
         </View>
       )}
 
-      {/* Step 3 */}
+      { }
       {step === 3 && (
         <View style={[styles.content, { marginTop: stepMarginTop[3] }]}>
           <Text style={styles.title}>You’ve reached your destination</Text>
@@ -129,13 +128,13 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
     justifyContent: "center",
-    alignItems: "center", // ensures same height
+    alignItems: "center", 
     marginTop: 20,
   },
-  // Primary (Next/Done/Start)
+ 
   button: {
     backgroundColor: "#00c4cc",
-    width: 120, // fixed width
+    width: 120, 
     paddingVertical: 20,
     borderRadius: 18,
     marginHorizontal: 4,
@@ -146,10 +145,10 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 20,
   },
-  // Secondary (Back)
+  
   secondaryButton: {
     backgroundColor: "#1c2e4a",
-    width: 120, // same fixed width
+    width: 120, 
     paddingVertical: 20,
     borderRadius: 18,
     marginHorizontal: 4,
