@@ -1,7 +1,8 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, Switch, Text, TouchableOpacity, View } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type ModeValue = "car" | "bike" | "bus" | "walking";
 
@@ -18,14 +19,48 @@ export default function NavigationPreferencesScreen() {
     { label: "Walking 🚶‍♂️", value: "walking" },
   ];
 
+ 
+  useEffect(() => {
+    const loadPreferences = async () => {
+      try {
+        const voicePref = await AsyncStorage.getItem("voice");
+        const vibrationPref = await AsyncStorage.getItem("vibration");
+        const modePref = await AsyncStorage.getItem("travelMode");
+
+        if (voicePref !== null) setVoice(voicePref === "true");
+        if (vibrationPref !== null) setVibration(vibrationPref === "true");
+        if (modePref !== null) setSelectedMode(modePref as ModeValue);
+      } catch (error) {
+        console.error("Failed to load preferences", error);
+      }
+    };
+
+    loadPreferences();
+  }, []);
+
+  
+  useEffect(() => {
+    const savePreferences = async () => {
+      try {
+        await AsyncStorage.setItem("voice", voice.toString());
+        await AsyncStorage.setItem("vibration", vibration.toString());
+        if (selectedMode) await AsyncStorage.setItem("travelMode", selectedMode);
+      } catch (error) {
+        console.error("Failed to save preferences", error);
+      }
+    };
+
+    savePreferences();
+  }, [voice, vibration, selectedMode]);
+
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.backBtn} onPress={() => router.back()}>
         <Ionicons name="arrow-back" size={28} color="#fff" />
       </TouchableOpacity>
 
-      <Text style={[styles.sectionTitle, { marginTop: -3}]}>
-           Navigation Preferences
+      <Text style={[styles.sectionTitle, { marginTop: -3 }]}>
+        Navigation Preferences
       </Text>
 
       <View style={styles.row}>
@@ -121,3 +156,4 @@ const styles = StyleSheet.create({
     color: "#fff",
   },
 });
+
