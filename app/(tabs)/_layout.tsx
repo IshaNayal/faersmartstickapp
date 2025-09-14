@@ -1,4 +1,4 @@
-import { RootStackParamList } from "./types.js";
+import { RootStackParamList } from "../../types/types.js";
 import {Stack} from "expo-router";
 import React from "react";
 
