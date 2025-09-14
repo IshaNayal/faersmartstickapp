@@ -29,7 +29,7 @@ export default function SignInScreen() {
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
 
- 
+
   const handleSignIn = async () => {
     try {
       if (!email || !password) {
@@ -46,7 +46,7 @@ export default function SignInScreen() {
     }
   };
 
-  
+ 
   const handleForgotPassword = async () => {
     if (!email) {
       Alert.alert("Enter Email", "Please enter your email to reset password.");
