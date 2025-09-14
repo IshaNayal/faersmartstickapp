@@ -3,31 +3,31 @@ import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import { StyleSheet, Switch, Text, TouchableOpacity, View } from "react-native";
 
+type ModeValue = "car" | "bike" | "bus" | "walking";
+
 export default function NavigationPreferencesScreen() {
   const router = useRouter();
   const [voice, setVoice] = useState(false);
   const [vibration, setVibration] = useState(false);
+  const [selectedMode, setSelectedMode] = useState<ModeValue | null>(null);
+
+  const modes: { label: string; value: ModeValue }[] = [
+    { label: "Car 🚗", value: "car" },
+    { label: "Bike 🏍️", value: "bike" },
+    { label: "Bus 🚌", value: "bus" },
+    { label: "Walking 🚶‍♂️", value: "walking" },
+  ];
 
   return (
     <View style={styles.container}>
-      { }
       <TouchableOpacity style={styles.backBtn} onPress={() => router.back()}>
         <Ionicons name="arrow-back" size={28} color="#fff" />
       </TouchableOpacity>
 
-      { }
-      <Text style={styles.header}></Text>
+      <Text style={[styles.sectionTitle, { marginTop: -3}]}>
+           Navigation Preferences
+      </Text>
 
-      { }
-      
-
-      
-
-      { }
-      <Text style={[styles.sectionTitle, { marginTop: -49 }]}>Navigation Preferences</Text>
-
-
-      { }
       <View style={styles.row}>
         <Text style={styles.rowText}>Voice Guidance</Text>
         <Switch
@@ -38,7 +38,6 @@ export default function NavigationPreferencesScreen() {
         />
       </View>
 
-      { }
       <View style={styles.row}>
         <Text style={styles.rowText}>Vibration Alerts</Text>
         <Switch
@@ -49,24 +48,27 @@ export default function NavigationPreferencesScreen() {
         />
       </View>
 
-      { }
       <Text style={[styles.sectionTitle, { marginTop: 30 }]}>Mode of Travel</Text>
 
-      <TouchableOpacity style={styles.modeBtn}>
-        <Text style={styles.modeText}>CAR 🚗</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.modeBtn}>
-        <Text style={styles.modeText}>Bike 🏍️</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.modeBtn}>
-        <Text style={styles.modeText}>Bus 🚌</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.modeBtn}>
-        <Text style={styles.modeText}>Walking 🚶‍♂️</Text>
-      </TouchableOpacity>
+      {modes.map((mode) => (
+        <TouchableOpacity
+          key={mode.value}
+          style={[
+            styles.modeBtn,
+            selectedMode === mode.value && styles.modeBtnSelected,
+          ]}
+          onPress={() => setSelectedMode(mode.value)}
+        >
+          <Text
+            style={[
+              styles.modeText,
+              selectedMode === mode.value && styles.modeTextSelected,
+            ]}
+          >
+            {mode.label}
+          </Text>
+        </TouchableOpacity>
+      ))}
     </View>
   );
 }
@@ -81,38 +83,6 @@ const styles = StyleSheet.create({
   backBtn: {
     marginBottom: 10,
     marginTop: 40,
-  },
-  header: {
-    color: "#fff",
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 20,
-  },
-  profile: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 10,
-  },
-  avatar: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    backgroundColor: "#14b8c4",
-    marginRight: 10,
-  },
-  email: {
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: "bold",
-  },
-  username: {
-    color: "#ccc",
-    fontSize: 14,
-  },
-  divider: {
-    height: 1,
-    backgroundColor: "#333",
-    marginVertical: 10,
   },
   sectionTitle: {
     color: "#fff",
@@ -139,9 +109,15 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginVertical: 6,
   },
+  modeBtnSelected: {
+    backgroundColor: "#14b8c4",
+  },
   modeText: {
     color: "#000",
     fontSize: 16,
     fontWeight: "600",
+  },
+  modeTextSelected: {
+    color: "#fff",
   },
 });
