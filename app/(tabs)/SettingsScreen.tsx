@@ -1,4 +1,3 @@
-
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router"; 
 import React, { useState, useEffect } from "react";
@@ -10,16 +9,14 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { getAuth } from "firebase/auth"; 
+import { getAuth } from "firebase/auth";
 
 export default function SettingsScreen() {
   const router = useRouter();
 
-  
   const [userEmail, setUserEmail] = useState<string>("");
   const [notificationsEnabled, setNotificationsEnabled] = useState(false);
 
-  
   useEffect(() => {
     const auth = getAuth();
     const user = auth.currentUser;
@@ -31,7 +28,7 @@ export default function SettingsScreen() {
       <ScrollView style={styles.mainContent}>
         <Text style={styles.title}></Text>
 
-        { }
+     
         <View style={styles.profileCard}>
           <Ionicons name="person-circle" size={65} color="#14b8c4" />
           <View>
@@ -40,7 +37,6 @@ export default function SettingsScreen() {
           </View>
         </View>
 
-        { }
         <Text style={styles.sectionTitle}>Account settings</Text>
 
         <TouchableOpacity
@@ -48,7 +44,7 @@ export default function SettingsScreen() {
           onPress={() => router.push("/EditProfileScreen")}
         >
           <Text style={styles.rowText}>Edit Profile</Text>
-          <Ionicons name="chevron-forward" size={20} color="#fff"   />
+          <Ionicons name="chevron-forward" size={20} color="#fff" />
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -59,7 +55,6 @@ export default function SettingsScreen() {
           <Ionicons name="chevron-forward" size={20} color="#fff" />
         </TouchableOpacity>
 
-        { }
         <View style={styles.row}>
           <Text style={styles.rowText}>Notification</Text>
           <Switch
@@ -78,7 +73,9 @@ export default function SettingsScreen() {
           <Ionicons name="chevron-forward" size={20} color="#fff" />
         </TouchableOpacity>
 
-        { }
+        
+        <View style={styles.divider} />
+
         <Text style={styles.sectionTitle}>More</Text>
         <TouchableOpacity style={styles.row}>
           <Text style={styles.rowText}>Privacy & Policy</Text>
@@ -106,8 +103,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: "#333",
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: "rgba(255, 255, 255, 1)", 
     paddingBottom: 35,
   },
   email: { color: "#fff", fontSize: 17, fontWeight: "600" },
@@ -118,8 +115,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginTop: 15,
     marginBottom: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: "#333",
     paddingBottom: 5,
   },
   row: {
@@ -127,8 +122,14 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingVertical: 14,
-    borderBottomWidth: 1,
-    borderBottomColor: "#333",
+    
+  },
+  divider: {
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: "rgba(255, 255, 255, 1)", 
+    marginTop: 5,
+    marginBottom: 5,
   },
   rowText: { color: "#fff", fontSize: 15, fontWeight: "600" },
 });
+
