@@ -145,7 +145,7 @@ export default function SignInScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#001f3f", alignItems: "center", justifyContent: "flex-start", paddingTop: 40 },
+  container: { flex: 1, backgroundColor: "#0a1931", alignItems: "center", justifyContent: "flex-start", paddingTop: 40 },
   headerRow: { flexDirection: "row", alignItems: "center", marginBottom: 10, width: "100%", paddingHorizontal: 20 },
   header: { fontSize: 24, color: "#00ccff", marginLeft: 10 },
   logoContainer: { width: 80, height: 80, borderRadius: 40, backgroundColor: "#f0f0f0", alignItems: "center", justifyContent: "center", marginBottom: 40, zIndex: 1 },
