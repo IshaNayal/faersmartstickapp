@@ -57,7 +57,7 @@ export default function SignUpScreen() {
       setPassword("");
       setConfirmPassword("");
 
-     
+      
       setTimeout(() => {
         router.push({
           pathname: "/WelcomeScreen",
@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
     alignItems: "stretch",
   },
   cardTitle: { fontSize: 30, fontWeight: "bold", marginBottom: 15 },
- 
+  
   inputRow: {
     flexDirection: "row",
     alignItems: "center",
