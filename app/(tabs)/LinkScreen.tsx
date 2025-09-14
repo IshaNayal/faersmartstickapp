@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
@@ -11,7 +10,7 @@ export default function LinkScreen() {
         <Text style={styles.title}>Connection</Text>
       </View>
 
-      { }
+      {}
       <View style={styles.content}>
         <Image
           style={styles.icon}
@@ -86,13 +85,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#14b8c4",
     width: 150, 
     paddingVertical: 20, 
-    borderRadius: 18,
+    borderRadius: 18, 
     marginHorizontal: 4,
     alignItems: "center",
     marginVertical: 8,
   },
   buttonText: {
-    color: "#000",
+    color: "#ffffffff",
     fontSize: 16,
     fontWeight: "bold",
   },
