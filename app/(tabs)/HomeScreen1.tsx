@@ -92,7 +92,7 @@ export default function HomeScreen() {
         </View>
       </View>
 
-      { }
+      {}
       <View style={styles.mainContent}>
         <Text style={styles.welcome}>PathPilot</Text>
 
@@ -166,7 +166,7 @@ export default function HomeScreen() {
                 </View>
 
 
-                { }
+                {}
                 <View style={styles.batteryContainer}>
                   <Svg height="160" width="160" viewBox="0 0 160 160">
                     <Circle
