@@ -24,7 +24,7 @@ export default function NavigationPreferencesScreen() {
       
 
       { }
-      <Text style={[styles.sectionTitle, { marginTop: -9 }]}>Navigation Preferences</Text>
+      <Text style={[styles.sectionTitle, { marginTop: -49 }]}>Navigation Preferences</Text>
 
 
       { }
