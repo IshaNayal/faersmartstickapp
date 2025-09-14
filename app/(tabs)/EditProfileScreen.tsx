@@ -39,7 +39,7 @@ export default function EditProfileScreen() {
       const user = auth.currentUser;
       if (!user) return;
 
-     
+      
       const docRef = doc(db, "users", user.uid);
       await setDoc(docRef, {
         name: userName,
@@ -133,8 +133,4 @@ const styles = StyleSheet.create({
   logoutBtn: { backgroundColor: "#fff", padding: 12, borderRadius: 8, alignItems: "center" },
   logoutText: { color: "#000", fontSize: 16, fontWeight: "bold" },
 });
-
-
-
-
 
