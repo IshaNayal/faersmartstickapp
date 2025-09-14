@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
@@ -156,7 +155,7 @@ const styles = StyleSheet.create({
   },
   secondaryText: {
     fontWeight: "bold",
-    color: "#ff0000",
+    color: "#ffffffff",
     fontSize: 20,
   },
   singleButtonWrap: {
