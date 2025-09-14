@@ -20,7 +20,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../../firebaseConfig";
 
-// --- Google sign-in helpers ---
+
 import * as WebBrowser from "expo-web-browser";
 import * as Google from "expo-auth-session/providers/google";
 
@@ -40,9 +40,9 @@ export default function SignInScreen() {
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
 
-  // --- Google login hook ---
+  
   const [request, response, promptAsync] = Google.useAuthRequest({
-    // 👇 use expoClientId here
+   
    clientId: "789677158308-jqq7lllh7d8jpc0gheok1atmtg3qdo8m.apps.googleusercontent.com",
     // iosClientId: "...",
     // androidClientId: "...",
@@ -50,10 +50,10 @@ export default function SignInScreen() {
 
   useEffect(() => {
     if (response?.type === "success" && response.authentication) {
-      // ✅ safe null check
+    
       const { idToken, accessToken } = response.authentication;
 
-      // ✅ pass both tokens if available
+     
       const credential = GoogleAuthProvider.credential(idToken, accessToken);
 
       signInWithCredential(auth, credential)
