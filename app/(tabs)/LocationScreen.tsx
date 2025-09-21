@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, TouchableOpacity, View, Alert } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
+import * as Speech from "expo-speech";
 
 export default function LocationScreen() {
   const [step, setStep] = useState<1 | 2 | 3>(1);
@@ -21,21 +22,28 @@ export default function LocationScreen() {
     3: 40,
   };
 
-  // Get user location
-  useEffect(() => {
-    (async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== "granted") {
-        Alert.alert("Permission Denied", "Enable location permissions to use this feature");
-        return;
-      }
+  // request and fetch location
+  const getLocation = async () => {
+    let { status } = await Location.requestForegroundPermissionsAsync();
+    if (status !== "granted") {
+      Alert.alert("Permission Denied", "Enable location permissions to use this feature");
+      return;
+    }
+    let loc = await Location.getCurrentPositionAsync({});
+    setLocation({
+      latitude: loc.coords.latitude,
+      longitude: loc.coords.longitude,
+    });
+  };
 
-      let loc = await Location.getCurrentPositionAsync({});
-      setLocation({
-        latitude: loc.coords.latitude,
-        longitude: loc.coords.longitude,
-      });
-    })();
+  // speak something
+  const handleVoice = () => {
+    Speech.speak("Hello! This is your smart assistant giving you guidance.");
+  };
+
+  // get initial location
+  useEffect(() => {
+    getLocation();
   }, []);
 
   return (
@@ -78,6 +86,16 @@ export default function LocationScreen() {
             <Marker coordinate={location} title="You are here" />
           </MapView>
 
+          {/* Voice & Location buttons */}
+          <View style={styles.extraRow}>
+            <TouchableOpacity style={styles.voiceButton} onPress={handleVoice}>
+              <Text style={styles.extraText}>🎤 Voice</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.locationButton} onPress={getLocation}>
+              <Text style={styles.extraText}>📍 Location</Text>
+            </TouchableOpacity>
+          </View>
+
           <View style={styles.row}>
             <TouchableOpacity style={styles.secondaryButton} onPress={prevStep}>
               <Text style={styles.secondaryText}>Back</Text>
@@ -110,6 +128,16 @@ export default function LocationScreen() {
             <Marker coordinate={location} title="Destination" />
           </MapView>
 
+          {/* Voice & Location buttons */}
+          <View style={styles.extraRow}>
+            <TouchableOpacity style={styles.voiceButton} onPress={handleVoice}>
+              <Text style={styles.extraText}>🎤 Voice</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.locationButton} onPress={getLocation}>
+              <Text style={styles.extraText}>📍 Location</Text>
+            </TouchableOpacity>
+          </View>
+
           <View style={styles.row}>
             <TouchableOpacity style={styles.secondaryButton} onPress={prevStep}>
               <Text style={styles.secondaryText}>Back</Text>
@@ -124,7 +152,6 @@ export default function LocationScreen() {
     </View>
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {
@@ -193,6 +220,34 @@ const styles = StyleSheet.create({
   },
   singleButtonWrap: {
     marginTop: 30,
+  },
+  /* New styles */
+  extraRow: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 10,
+  },
+  voiceButton: {
+    backgroundColor: "#00c4cc",
+    width: 120,
+    paddingVertical: 15,
+    borderRadius: 18,
+    marginHorizontal: 4,
+    alignItems: "center",
+  },
+  locationButton: {
+    backgroundColor: "#00c4cc",
+    width: 120,
+    paddingVertical: 15,
+    borderRadius: 18,
+    marginHorizontal: 4,
+    alignItems: "center",
+  },
+  extraText: {
+    fontWeight: "bold",
+    color: "#fff",
+    fontSize: 18,
   },
 });
 
