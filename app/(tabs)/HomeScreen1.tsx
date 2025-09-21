@@ -1,6 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
 import React, { useEffect, useRef, useState } from "react";
-
 import {
   Animated,
   BackHandler,
@@ -17,7 +16,6 @@ import LinkScreen from "./LinkScreen";
 import LocationScreen from "./LocationScreen";
 import SettingsScreen from "./SettingsScreen";
 
-
 type Step = "connect" | "bluetooth" | "connected";
 type Screen = "home" | "location" | "alert" | "link" | "settings";
 
@@ -32,12 +30,11 @@ export default function HomeScreen() {
   useEffect(() => {
     const BackHandlerListener = BackHandler.addEventListener(
       "hardwareBackPress",
-      () => true 
+      () => true
     );
     return () => BackHandlerListener.remove();
   }, []);
 
-  
   const scales = {
     home: useRef(new Animated.Value(1)).current,
     location: useRef(new Animated.Value(1)).current,
@@ -59,7 +56,7 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      { }
+      {/* Sidebar */}
       <View style={styles.sidebar}>
         <View style={styles.sidebarIcons}>
           {(
@@ -93,7 +90,7 @@ export default function HomeScreen() {
         </View>
       </View>
 
-      {}
+      {/* Main Content */}
       <View style={styles.mainContent}>
         <Text style={styles.welcome}>PathPilot</Text>
 
@@ -151,8 +148,8 @@ export default function HomeScreen() {
                   <Switch
                     value={voiceMode}
                     onValueChange={setVoiceMode}
-                    trackColor={{ false: "#3f3d3d", true: "#14b8c4" }} 
-                    thumbColor={voiceMode ? "#14b8c4" : "#ffffff"} 
+                    trackColor={{ false: "#3f3d3d", true: "#14b8c4" }}
+                    thumbColor={voiceMode ? "#14b8c4" : "#ffffff"}
                   />
                 </View>
 
@@ -161,13 +158,11 @@ export default function HomeScreen() {
                   <Switch
                     value={vibrationMode}
                     onValueChange={setVibrationMode}
-                    trackColor={{ false: "#3f3d3d", true: "#14b8c4" }} 
-                    thumbColor={vibrationMode ? "#14b8c4" : "#ffffff"} 
+                    trackColor={{ false: "#3f3d3d", true: "#14b8c4" }}
+                    thumbColor={vibrationMode ? "#14b8c4" : "#ffffff"}
                   />
                 </View>
 
-
-                {}
                 <View style={styles.batteryContainer}>
                   <Svg height="160" width="160" viewBox="0 0 160 160">
                     <Circle
@@ -201,7 +196,8 @@ export default function HomeScreen() {
           </>
         )}
 
-        {selectedScreen === "location" && <LocationScreen />}
+        {/* Location Screen */}
+        {selectedScreen === "location" && <LocationScreen voiceMode={voiceMode} />}
         {selectedScreen === "alert" && <AlertScreen />}
         {selectedScreen === "link" && <LinkScreen />}
         {selectedScreen === "settings" && <SettingsScreen />}
@@ -209,6 +205,9 @@ export default function HomeScreen() {
     </View>
   );
 }
+
+// ... styles same as your previous HomeScreen styles
+
 
 const styles = StyleSheet.create({
   container: { flex: 1, flexDirection: "row", backgroundColor: "rgba(1, 21, 71, 1)" },
