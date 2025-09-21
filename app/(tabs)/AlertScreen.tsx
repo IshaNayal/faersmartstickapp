@@ -126,5 +126,3 @@ const styles = StyleSheet.create({
   button: { backgroundColor: "#14b8c4", padding: 15, borderRadius: 5, width: "80%", alignItems: "center", marginVertical: 10 },
   buttonText: { color: "#fff", fontSize: 16, fontWeight: "bold" },
 });
-
-
