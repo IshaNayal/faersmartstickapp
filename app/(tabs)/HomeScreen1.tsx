@@ -17,6 +17,7 @@ import LinkScreen from "./LinkScreen";
 import LocationScreen from "./LocationScreen";
 import SettingsScreen from "./SettingsScreen";
 
+
 type Step = "connect" | "bluetooth" | "connected";
 type Screen = "home" | "location" | "alert" | "link" | "settings";
 
@@ -210,7 +211,7 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, flexDirection: "row", backgroundColor: "#0a1931" },
+  container: { flex: 1, flexDirection: "row", backgroundColor: "rgba(1, 21, 71, 1)" },
   sidebar: {
     width: 70,
     backgroundColor: "#14b8c4",
@@ -228,16 +229,16 @@ const styles = StyleSheet.create({
   connectBtn: { backgroundColor: "#14b8c4", paddingVertical: 38, paddingHorizontal: 35, borderRadius: 12, marginHorizontal: 8, marginBottom: 350 },
   connectText: { color: "#fff", fontSize: 27, fontWeight: "600" },
   popupCard: { backgroundColor: "#fff", paddingHorizontal: 35, borderRadius: 12, alignItems: "center", width: "85%", height: 300, marginBottom: 300, marginHorizontal: 8, },
-  popupText: { color: "#ff0000ff", textAlign: "center", marginVertical: 14, fontSize: 20, lineHeight: 20 },
+  popupText: { color: "#000000ff", textAlign: "center", marginVertical: 14, fontSize: 20, lineHeight: 20 },
   enableBtn: { backgroundColor: "#14b8c4", paddingVertical: 14, paddingHorizontal: 25, borderRadius: 10, marginTop: 14 },
   enableText: { color: "#fff", fontWeight: "600", fontSize: 20 },
-  statusContainer: { marginTop: 10, marginBottom: 20 },
-  statusBox: { backgroundColor: "#1e293b", padding: 14, borderRadius: 10, marginBottom: 60 },
+  statusContainer: { marginTop: 10, marginBottom: 20, borderRadius :10 },
+  statusBox: { backgroundColor: "rgba(3, 30, 97, 0.76)", padding: 14, borderRadius: 10, marginBottom: 60 },
   statusText: { fontSize: 20, color: "#fff", fontWeight: "bold" },
-  obstacleBox: { backgroundColor: "#1e293b", paddingVertical: 16, paddingHorizontal: 14, borderRadius: 10, alignItems: "center", marginBottom: 60 },
+  obstacleBox: { backgroundColor: "rgba(3, 30, 97, 0.76)", paddingVertical: 16, paddingHorizontal: 14, borderRadius: 20, alignItems: "center", marginBottom: 60 },
   obstacleText: { fontSize: 20, color: "red", fontWeight: "bold", marginBottom: 6, },
   obstacleDistance: { fontSize: 20, color: "#fff" },
-  toggleRow: { flexDirection: "row", justifyContent: "space-between", backgroundColor: "#1e293b", paddingVertical: 14, paddingHorizontal: 18, borderRadius: 10, alignItems: "center", marginBottom: 60 },
+  toggleRow: { flexDirection: "row", justifyContent: "space-between", backgroundColor: "rgba(3, 30, 97, 0.76)", paddingVertical: 14, paddingHorizontal: 18, borderRadius: 10, alignItems: "center", marginBottom: 60 },
   toggleLabel: { color: "#ffffffff", fontSize: 20, fontWeight: "bold" },
   batteryContainer: { marginLeft: -20, marginTop: -30, marginBottom: 40, alignItems: "center", justifyContent: "center" },
   batteryText: { position: "absolute", color: "#fff", fontSize: 20, fontWeight: "600" },
