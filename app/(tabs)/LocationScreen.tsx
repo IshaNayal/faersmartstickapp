@@ -1,4 +1,4 @@
-// LocationScreen.tsx
+
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, TouchableOpacity, View, Alert } from "react-native";
 import MapView, { Marker } from "react-native-maps";
@@ -21,7 +21,7 @@ export default function LocationScreen() {
 
   const stepMarginTop = { 1: 80, 2: 40, 3: 40 };
 
-  // Fetch location
+
   const getLocation = async () => {
     let { status } = await Location.requestForegroundPermissionsAsync();
     if (status !== "granted") {
@@ -35,7 +35,7 @@ export default function LocationScreen() {
     });
   };
 
-  // Load voice guidance preference
+
   const loadVoicePreference = async () => {
     try {
       const voicePref = await AsyncStorage.getItem("voice");
@@ -63,7 +63,7 @@ export default function LocationScreen() {
 
   return (
     <View style={styles.container}>
-      {/* Step 1 */}
+      {}
       {step === 1 && (
         <View style={[styles.content, { marginTop: stepMarginTop[1] }]}>
           <Text style={styles.title}>Launching Navigation Mode: Let the Journey Begin</Text>
@@ -76,7 +76,7 @@ export default function LocationScreen() {
         </View>
       )}
 
-      {/* Step 2 */}
+      {}
       {step === 2 && location && (
         <View style={[styles.content, { marginTop: stepMarginTop[2] }]}>
           <Text style={styles.title}>Real-time location detected</Text>
@@ -115,7 +115,7 @@ export default function LocationScreen() {
         </View>
       )}
 
-      {/* Step 3 */}
+      {}
       {step === 3 && location && (
         <View style={[styles.content, { marginTop: stepMarginTop[3] }]}>
           <Text style={styles.title}>You’ve reached your destination</Text>
@@ -158,7 +158,7 @@ export default function LocationScreen() {
 }
 
 
-// ...use same styles as your previous LocationScreen
+
 
 
 const styles = StyleSheet.create({
@@ -229,7 +229,7 @@ const styles = StyleSheet.create({
   singleButtonWrap: {
     marginTop: 30,
   },
-  /* New styles */
+  
   extraRow: {
     flexDirection: "row",
     justifyContent: "center",
