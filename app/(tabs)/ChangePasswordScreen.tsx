@@ -95,7 +95,7 @@ export default function ChangePasswordScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#0a1931", padding: 20 },
+  container: { flex: 1, backgroundColor: "rgba(1, 21, 71, 1)", padding: 20 },
   backBtn: { marginTop: 10, marginBottom: 15 },
   title: { color: "#fff", fontSize: 22, fontWeight: "bold", marginVertical: 20 },
   input: { backgroundColor: "#fff", borderRadius: 8, padding: 12, marginBottom: 12, color: "#000" },
