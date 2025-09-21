@@ -1,8 +1,11 @@
-import React, { useState } from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, Text, TouchableOpacity, View, Alert } from "react-native";
+import MapView, { Marker } from "react-native-maps";
+import * as Location from "expo-location";
 
 export default function LocationScreen() {
   const [step, setStep] = useState<1 | 2 | 3>(1);
+  const [location, setLocation] = useState<{ latitude: number; longitude: number } | null>(null);
 
   const nextStep = () => {
     if (step < 3) setStep((prev) => (prev + 1) as 1 | 2 | 3);
@@ -18,9 +21,26 @@ export default function LocationScreen() {
     3: 40,
   };
 
+  // Get user location
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        Alert.alert("Permission Denied", "Enable location permissions to use this feature");
+        return;
+      }
+
+      let loc = await Location.getCurrentPositionAsync({});
+      setLocation({
+        latitude: loc.coords.latitude,
+        longitude: loc.coords.longitude,
+      });
+    })();
+  }, []);
+
   return (
     <View style={styles.container}>
-      { }
+      {/* Step 1 */}
       {step === 1 && (
         <View style={[styles.content, { marginTop: stepMarginTop[1] }]}>
           <Text style={styles.title}>
@@ -38,20 +58,25 @@ export default function LocationScreen() {
         </View>
       )}
 
-      { }
-      {step === 2 && (
+      {/* Step 2 */}
+      {step === 2 && location && (
         <View style={[styles.content, { marginTop: stepMarginTop[2] }]}>
           <Text style={styles.title}>Real-time location detected</Text>
           <Text style={styles.subtitle}>
             Your position is updated for precise journey guidance
           </Text>
 
-          <Image
-            source={{
-              uri: "https://upload.wikimedia.org/wikipedia/commons/9/99/Google_Maps_icon.png",
+          <MapView
+            style={styles.map}
+            initialRegion={{
+              latitude: location.latitude,
+              longitude: location.longitude,
+              latitudeDelta: 0.01,
+              longitudeDelta: 0.01,
             }}
-            style={styles.image}
-          />
+          >
+            <Marker coordinate={location} title="You are here" />
+          </MapView>
 
           <View style={styles.row}>
             <TouchableOpacity style={styles.secondaryButton} onPress={prevStep}>
@@ -65,20 +90,25 @@ export default function LocationScreen() {
         </View>
       )}
 
-      { }
-      {step === 3 && (
+      {/* Step 3 */}
+      {step === 3 && location && (
         <View style={[styles.content, { marginTop: stepMarginTop[3] }]}>
           <Text style={styles.title}>You’ve reached your destination</Text>
           <Text style={styles.subtitle}>
             Guidance completed. We’re glad you got here safely
           </Text>
 
-          <Image
-            source={{
-              uri: "https://upload.wikimedia.org/wikipedia/commons/9/99/Google_Maps_icon.png",
+          <MapView
+            style={styles.map}
+            initialRegion={{
+              latitude: location.latitude,
+              longitude: location.longitude,
+              latitudeDelta: 0.01,
+              longitudeDelta: 0.01,
             }}
-            style={styles.image}
-          />
+          >
+            <Marker coordinate={location} title="Destination" />
+          </MapView>
 
           <View style={styles.row}>
             <TouchableOpacity style={styles.secondaryButton} onPress={prevStep}>
@@ -95,45 +125,49 @@ export default function LocationScreen() {
   );
 }
 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0a1931",
+    backgroundColor: "rgba(1, 21, 71, 1)",
     paddingHorizontal: 1,
   },
   content: {
     flex: 1,
     alignItems: "center",
     justifyContent: "flex-start",
+    width: "100%",
   },
   title: {
     fontSize: 20,
     fontWeight: "bold",
     color: "#fff",
-    marginBottom: 80,
+    marginBottom: 20,
     paddingHorizontal: 20,
+    textAlign: "center",
   },
   subtitle: {
     fontSize: 20,
     color: "#fff",
-    marginBottom: 80,
+    marginBottom: 10,
     paddingHorizontal: 20,
+    textAlign: "center",
   },
-  image: {
-    width: 150,
-    height: 150,
-    marginBottom: 50,
+  map: {
+    width: "90%",
+    height: 300,
+    borderRadius: 10,
+    marginVertical: 20,
   },
   row: {
     flexDirection: "row",
     justifyContent: "center",
-    alignItems: "center", 
+    alignItems: "center",
     marginTop: 20,
   },
- 
   button: {
     backgroundColor: "#00c4cc",
-    width: 120, 
+    width: 120,
     paddingVertical: 20,
     borderRadius: 18,
     marginHorizontal: 4,
@@ -144,10 +178,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 20,
   },
-  
   secondaryButton: {
-    backgroundColor: "#1c2e4a",
-    width: 120, 
+    backgroundColor: "#00c4cc",
+    width: 120,
     paddingVertical: 20,
     borderRadius: 18,
     marginHorizontal: 4,
@@ -155,7 +188,7 @@ const styles = StyleSheet.create({
   },
   secondaryText: {
     fontWeight: "bold",
-    color: "#ffffffff",
+    color: "#fff",
     fontSize: 20,
   },
   singleButtonWrap: {
