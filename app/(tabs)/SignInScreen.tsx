@@ -25,18 +25,18 @@ import { useRouter } from "expo-router";
 WebBrowser.maybeCompleteAuthSession();
 
 export default function SignInScreen() {
-  const router = useRouter(); // <- useRouter for Expo Router
+  const router = useRouter(); 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
 
-  // Google Auth
+ 
   const [request, response, promptAsync] = Google.useAuthRequest({
     clientId:
       "789677158308-jqq7lllh7d8jpc0gheok1atmtg3qdo8m.apps.googleusercontent.com",
        scopes: ["profile", "email"],
       
-    // iosClientId, androidClientId can be added if needed
+   
   });
 
   useEffect(() => {
@@ -48,7 +48,7 @@ export default function SignInScreen() {
       signInWithCredential(auth, credential)
         .then((userCredential) => {
           console.log("✅ Google user signed in:", userCredential.user.email);
-          router.push("/HomeScreen1"); // <- Navigate correctly
+          router.push("/HomeScreen1"); 
         })
         .catch((error) => {
           console.error("Google Sign In Error:", error);
@@ -57,7 +57,7 @@ export default function SignInScreen() {
     }
   }, [response]);
 
-  // Email/Password Login
+ 
   const handleSignIn = async () => {
     if (!email || !password) {
       Alert.alert("Missing fields", "Please enter email and password.");
@@ -71,14 +71,14 @@ export default function SignInScreen() {
         password
       );
       console.log("✅ User signed in:", userCredential.user.email);
-      router.push("/HomeScreen1"); // <- Navigate correctly
+      router.push("/HomeScreen1"); 
     } catch (error: any) {
       console.error("❌ Login Error:", error.message);
       Alert.alert("Sign In Failed", "Incorrect email or password");
     }
   };
 
-  // Forgot Password
+ 
   const handleForgotPassword = async () => {
     if (!email) {
       Alert.alert(
