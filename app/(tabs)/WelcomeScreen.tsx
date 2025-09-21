@@ -2,12 +2,12 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import React from "react";
 import {
-  SafeAreaView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function WelcomeScreen() {
   const router = useRouter();
@@ -31,7 +31,7 @@ export default function WelcomeScreen() {
         <View style={styles.buttonGroup}>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => router.push("/SignInScreen")} 
+            onPress={() => router.push("/(tabs)/SignInScreen")} 
           >
             <Text style={styles.buttonText}>Sign In</Text>
           </TouchableOpacity>
@@ -51,7 +51,7 @@ export default function WelcomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor:  "#0a1931",
+    backgroundColor:  "rgba(1, 21, 71, 1)",
     alignItems: "center",
     paddingHorizontal: 20,
     paddingTop: 40,
