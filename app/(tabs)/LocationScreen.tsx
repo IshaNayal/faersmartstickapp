@@ -1,12 +1,15 @@
+// LocationScreen.tsx
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, TouchableOpacity, View, Alert } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
 import * as Speech from "expo-speech";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function LocationScreen() {
   const [step, setStep] = useState<1 | 2 | 3>(1);
   const [location, setLocation] = useState<{ latitude: number; longitude: number } | null>(null);
+  const [voiceGuidance, setVoiceGuidance] = useState(false);
 
   const nextStep = () => {
     if (step < 3) setStep((prev) => (prev + 1) as 1 | 2 | 3);
@@ -16,13 +19,9 @@ export default function LocationScreen() {
     if (step > 1) setStep((prev) => (prev - 1) as 1 | 2 | 3);
   };
 
-  const stepMarginTop = {
-    1: 80,
-    2: 40,
-    3: 40,
-  };
+  const stepMarginTop = { 1: 80, 2: 40, 3: 40 };
 
-  // request and fetch location
+  // Fetch location
   const getLocation = async () => {
     let { status } = await Location.requestForegroundPermissionsAsync();
     if (status !== "granted") {
@@ -36,14 +35,30 @@ export default function LocationScreen() {
     });
   };
 
-  // speak something
-  const handleVoice = () => {
-    Speech.speak("Hello! This is your smart assistant giving you guidance.");
+  // Load voice guidance preference
+  const loadVoicePreference = async () => {
+    try {
+      const voicePref = await AsyncStorage.getItem("voice");
+      setVoiceGuidance(voicePref === "true");
+    } catch (error) {
+      console.error("Failed to load voice preference", error);
+    }
   };
 
-  // get initial location
+  const handleVoice = () => {
+    if (!voiceGuidance) {
+      Alert.alert(
+        "Voice Guidance is Off",
+        "Enable Voice Guidance in Navigation Preferences to use this feature."
+      );
+      return;
+    }
+    Speech.speak("Hello! Main aapki smart assistant hoon jo aapko guidance de rahi hoon.");
+  };
+
   useEffect(() => {
     getLocation();
+    loadVoicePreference();
   }, []);
 
   return (
@@ -51,13 +66,8 @@ export default function LocationScreen() {
       {/* Step 1 */}
       {step === 1 && (
         <View style={[styles.content, { marginTop: stepMarginTop[1] }]}>
-          <Text style={styles.title}>
-            Launching Navigation Mode: Let the Journey Begin
-          </Text>
-          <Text style={styles.subtitle}>
-            Seamlessly connect and navigate with your smart assistant
-          </Text>
-
+          <Text style={styles.title}>Launching Navigation Mode: Let the Journey Begin</Text>
+          <Text style={styles.subtitle}>Seamlessly connect and navigate with your smart assistant</Text>
           <View style={styles.singleButtonWrap}>
             <TouchableOpacity style={styles.button} onPress={nextStep}>
               <Text style={styles.buttonText}>Start</Text>
@@ -70,9 +80,7 @@ export default function LocationScreen() {
       {step === 2 && location && (
         <View style={[styles.content, { marginTop: stepMarginTop[2] }]}>
           <Text style={styles.title}>Real-time location detected</Text>
-          <Text style={styles.subtitle}>
-            Your position is updated for precise journey guidance
-          </Text>
+          <Text style={styles.subtitle}>Your position is updated for precise journey guidance</Text>
 
           <MapView
             style={styles.map}
@@ -86,7 +94,6 @@ export default function LocationScreen() {
             <Marker coordinate={location} title="You are here" />
           </MapView>
 
-          {/* Voice & Location buttons */}
           <View style={styles.extraRow}>
             <TouchableOpacity style={styles.voiceButton} onPress={handleVoice}>
               <Text style={styles.extraText}>🎤 Voice</Text>
@@ -112,9 +119,7 @@ export default function LocationScreen() {
       {step === 3 && location && (
         <View style={[styles.content, { marginTop: stepMarginTop[3] }]}>
           <Text style={styles.title}>You’ve reached your destination</Text>
-          <Text style={styles.subtitle}>
-            Guidance completed. We’re glad you got here safely
-          </Text>
+          <Text style={styles.subtitle}>Guidance completed. We’re glad you got here safely</Text>
 
           <MapView
             style={styles.map}
@@ -128,7 +133,6 @@ export default function LocationScreen() {
             <Marker coordinate={location} title="Destination" />
           </MapView>
 
-          {/* Voice & Location buttons */}
           <View style={styles.extraRow}>
             <TouchableOpacity style={styles.voiceButton} onPress={handleVoice}>
               <Text style={styles.extraText}>🎤 Voice</Text>
@@ -152,6 +156,10 @@ export default function LocationScreen() {
     </View>
   );
 }
+
+
+// ...use same styles as your previous LocationScreen
+
 
 const styles = StyleSheet.create({
   container: {
