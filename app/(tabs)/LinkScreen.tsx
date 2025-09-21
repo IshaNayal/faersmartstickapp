@@ -97,5 +97,3 @@ const styles = StyleSheet.create({
   },
 });
 
-
-
