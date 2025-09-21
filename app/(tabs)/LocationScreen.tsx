@@ -6,10 +6,18 @@ import * as Location from "expo-location";
 import * as Speech from "expo-speech";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export default function LocationScreen() {
+interface Props {
+  voiceMode: boolean;
+}
+
+export default function LocationScreen({ voiceMode }: Props) {
   const [step, setStep] = useState<1 | 2 | 3>(1);
   const [location, setLocation] = useState<{ latitude: number; longitude: number } | null>(null);
-  const [voiceGuidance, setVoiceGuidance] = useState(false);
+  const [voiceGuidance, setVoiceGuidance] = useState(voiceMode);
+
+  useEffect(() => {
+    setVoiceGuidance(voiceMode);
+  }, [voiceMode]);
 
   const nextStep = () => {
     if (step < 3) setStep((prev) => (prev + 1) as 1 | 2 | 3);
@@ -229,7 +237,7 @@ const styles = StyleSheet.create({
   singleButtonWrap: {
     marginTop: 30,
   },
-  
+
   extraRow: {
     flexDirection: "row",
     justifyContent: "center",
@@ -258,4 +266,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
 });
+
+
 
