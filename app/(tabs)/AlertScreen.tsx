@@ -52,15 +52,25 @@ export default function EmergencyHelpScreen() {
     setLocationShared(true);
   };
 
-  const handleSmsPress = () => {
+  const handleSmsPress = async () => {
     if (!emergencyContact) {
       Alert.alert("No Emergency Contact", "Please set an emergency contact in your profile.");
       return;
     }
 
     let message = "I need emergency help! Please respond.";
-    if (currentLocation) {
-      message += ` My location: https://www.google.com/maps?q=${currentLocation.latitude},${currentLocation.longitude}`;
+
+    try {
+      // Fetch live location before sending SMS
+      const { status } = await Location.requestForegroundPermissionsAsync();
+      if (status === "granted") {
+        const location = await Location.getCurrentPositionAsync({});
+        const latitude = location.coords.latitude;
+        const longitude = location.coords.longitude;
+        message += ` My location: https://www.google.com/maps?q=${latitude},${longitude}`;
+      }
+    } catch (error) {
+      console.error("Error getting location for SMS:", error);
     }
 
     const smsUrl =
