@@ -1,13 +1,14 @@
 import { useRouter } from "expo-router";
 import React, { useEffect } from "react";
-import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Index() {
   const router = useRouter();
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      router.replace("/WelcomeScreen"); 
+      router.replace("/WelcomeScreen");
     }, 2000);
 
     return () => clearTimeout(timer);
@@ -25,7 +26,7 @@ export default function Index() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0a1931",
+    backgroundColor: "rgba(1, 21, 71, 1)",
     justifyContent: "center",
     alignItems: "center",
   },
