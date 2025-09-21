@@ -6,22 +6,45 @@ import {
   StyleSheet,
   Switch,
   Text,
+  TextInput,
   TouchableOpacity,
   View,
+  Alert,
 } from "react-native";
 import { getAuth } from "firebase/auth";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function SettingsScreen() {
   const router = useRouter();
 
   const [userEmail, setUserEmail] = useState<string>("");
   const [notificationsEnabled, setNotificationsEnabled] = useState(false);
+  const [emergencyNumber, setEmergencyNumber] = useState<string>("");
 
   useEffect(() => {
     const auth = getAuth();
     const user = auth.currentUser;
     if (user) setUserEmail(user.email || "");
+
+    // Load saved emergency number
+    AsyncStorage.getItem("emergencyNumber").then((number) => {
+      if (number) setEmergencyNumber(number);
+    });
   }, []);
+
+  const saveEmergencyNumber = async () => {
+    if (!emergencyNumber) {
+      Alert.alert("Invalid Number", "Please enter a valid emergency contact number.");
+      return;
+    }
+    try {
+      await AsyncStorage.setItem("emergencyNumber", emergencyNumber);
+      Alert.alert("Saved", "Emergency contact number saved successfully!");
+    } catch (error) {
+      console.error("Error saving emergency number:", error);
+      Alert.alert("Error", "Failed to save emergency contact number.");
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -73,7 +96,9 @@ export default function SettingsScreen() {
           <Ionicons name="chevron-forward" size={20} color="#fff" />
         </TouchableOpacity>
 
-        {/* second line */}
+       
+
+        {/* More section */}
         <View style={styles.divider} />
 
         <Text style={styles.sectionTitle}>More</Text>
@@ -91,7 +116,7 @@ export default function SettingsScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, flexDirection: "row", backgroundColor: "#0a1931" },
+  container: { flex: 1, flexDirection: "row", backgroundColor: "rgba(1, 21, 71, 1)" },
   mainContent: { flex: 1, padding: 0 },
   title: {
     color: "#fff",
@@ -122,11 +147,35 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingVertical: 14,
-    // no borders here anymore
+  },
+  emergencyRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginBottom: 10,
+  },
+  input: {
+    flex: 1,
+    borderBottomWidth: 1,
+    borderBottomColor: "#fff",
+    color: "#fff",
+    fontSize: 16,
+    marginRight: 10,
+    paddingVertical: 4,
+  },
+  saveButton: {
+    backgroundColor: "#14b8c4",
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderRadius: 5,
+  },
+  saveText: {
+    color: "#fff",
+    fontWeight: "bold",
   },
   divider: {
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: "rgba(255, 255, 255, 1)", // second line
+    borderBottomColor: "rgba(255, 255, 255, 1)",
     marginTop: 5,
     marginBottom: 5,
   },
