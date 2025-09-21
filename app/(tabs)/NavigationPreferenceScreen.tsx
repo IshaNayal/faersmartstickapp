@@ -1,4 +1,3 @@
-// NavigationPreferenceScreen.tsx
 import { Ionicons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
@@ -20,7 +19,7 @@ export default function NavigationPreferencesScreen() {
     { label: "Walking 🚶‍♂️", value: "walking" },
   ];
 
-  // Load preferences on mount
+
   useEffect(() => {
     const loadPreferences = async () => {
       try {
@@ -39,7 +38,7 @@ export default function NavigationPreferencesScreen() {
     loadPreferences();
   }, []);
 
-  // Save preferences whenever they change
+
   useEffect(() => {
     const savePreferences = async () => {
       try {
