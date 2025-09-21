@@ -34,6 +34,8 @@ export default function SignInScreen() {
   const [request, response, promptAsync] = Google.useAuthRequest({
     clientId:
       "789677158308-jqq7lllh7d8jpc0gheok1atmtg3qdo8m.apps.googleusercontent.com",
+       scopes: ["profile", "email"],
+      
     // iosClientId, androidClientId can be added if needed
   });
 
