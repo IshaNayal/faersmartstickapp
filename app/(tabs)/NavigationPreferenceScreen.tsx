@@ -1,8 +1,8 @@
 import { Ionicons } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
-import React, { useState, useEffect } from "react";
-import { StyleSheet, Switch, Text, TouchableOpacity, View } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useRouter } from "expo-router";
+import React, { useEffect, useState } from "react";
+import { StyleSheet, Switch, Text, TouchableOpacity, View } from "react-native";
 
 type ModeValue = "car" | "bike" | "bus" | "walking";
 
@@ -19,7 +19,7 @@ export default function NavigationPreferencesScreen() {
     { label: "Walking 🚶‍♂️", value: "walking" },
   ];
 
- 
+  // Load preferences on mount
   useEffect(() => {
     const loadPreferences = async () => {
       try {
@@ -38,7 +38,7 @@ export default function NavigationPreferencesScreen() {
     loadPreferences();
   }, []);
 
-  
+  // Save preferences whenever they change
   useEffect(() => {
     const savePreferences = async () => {
       try {
@@ -111,7 +111,7 @@ export default function NavigationPreferencesScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0a1931",
+    backgroundColor: "rgba(1, 21, 71, 1)",
     paddingHorizontal: 20,
     paddingTop: 10,
   },
@@ -156,4 +156,3 @@ const styles = StyleSheet.create({
     color: "#fff",
   },
 });
-
