@@ -26,7 +26,7 @@ export default function SettingsScreen() {
     const user = auth.currentUser;
     if (user) setUserEmail(user.email || "");
 
-    // Load saved emergency number
+ 
     AsyncStorage.getItem("emergencyNumber").then((number) => {
       if (number) setEmergencyNumber(number);
     });
@@ -51,7 +51,7 @@ export default function SettingsScreen() {
       <ScrollView style={styles.mainContent}>
         <Text style={styles.title}></Text>
 
-        {/* Profile section */}
+        {}
         <View style={styles.profileCard}>
           <Ionicons name="person-circle" size={65} color="#14b8c4" />
           <View>
@@ -98,7 +98,7 @@ export default function SettingsScreen() {
 
        
 
-        {/* More section */}
+        {}
         <View style={styles.divider} />
 
         <Text style={styles.sectionTitle}>More</Text>
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 20,
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: "rgba(255, 255, 255, 1)", // first line only
+    borderBottomColor: "rgba(255, 255, 255, 1)", 
     paddingBottom: 35,
   },
   email: { color: "#fff", fontSize: 17, fontWeight: "600" },
