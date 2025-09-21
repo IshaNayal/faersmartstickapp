@@ -34,7 +34,7 @@ export default function LinkScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0a1931",
+    backgroundColor: "rgba(1, 21, 71, 1)",
     paddingHorizontal: 1, 
   },
   topSection: {
