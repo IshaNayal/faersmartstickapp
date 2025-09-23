@@ -56,7 +56,7 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      {}
+      {/* Sidebar */}
       <View style={styles.sidebar}>
         <View style={styles.sidebarIcons}>
           {(
@@ -90,7 +90,7 @@ export default function HomeScreen() {
         </View>
       </View>
 
-      {}
+      {/* Main Content */}
       <View style={styles.mainContent}>
         <Text style={styles.welcome}>PathPilot</Text>
 
@@ -196,7 +196,7 @@ export default function HomeScreen() {
           </>
         )}
 
-        {}
+        {/* Location Screen */}
         {selectedScreen === "location" && <LocationScreen voiceMode={voiceMode} />}
         {selectedScreen === "alert" && <AlertScreen />}
         {selectedScreen === "link" && <LinkScreen />}
