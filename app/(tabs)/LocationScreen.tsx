@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
-import { StyleSheet, Text, TouchableOpacity, View, Image, Alert } from "react-native";
-import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
 import * as Speech from "expo-speech";
+import React, { useEffect, useRef, useState } from "react";
+import { Alert, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import MapView, { Marker } from "react-native-maps";
 
 interface Props {
   voiceMode: boolean;
@@ -57,7 +57,7 @@ export default function LocationScreen({ voiceMode }: Props) {
         </View>
       )}
 
-   
+    
       {step === 2 && location && (
         <View style={[styles.content, { marginTop: stepMarginTop[2] }]}>
           <Text style={styles.title}>Real-time location detected</Text>
@@ -76,7 +76,7 @@ export default function LocationScreen({ voiceMode }: Props) {
               <Marker coordinate={location} title="You are here" />
             </MapView>
 
-            
+         
             {showMapCoverStep2 && (
               <TouchableOpacity
                 style={styles.mapCoverFull}
@@ -90,7 +90,7 @@ export default function LocationScreen({ voiceMode }: Props) {
               </TouchableOpacity>
             )}
 
-            
+           
             <View style={styles.circleRowOverlay}>
               <TouchableOpacity
                 style={styles.circleButton}
@@ -151,7 +151,7 @@ export default function LocationScreen({ voiceMode }: Props) {
               </TouchableOpacity>
             )}
 
-      
+         
             <View style={styles.circleRowOverlay}>
               <TouchableOpacity
                 style={styles.circleButton}
@@ -197,14 +197,14 @@ const styles = StyleSheet.create({
   secondaryButton: { backgroundColor: "#14b8c4", padding: 12, borderRadius: 12, marginTop: 20, alignItems: "center" },
   secondaryText: { color: "#fff", fontSize: 18, fontWeight: "bold" },
 
- 
+
   row: {
     flexDirection: "row",
     justifyContent: "space-between",
     width: "100%",
     paddingHorizontal: 10,
-    marginTop: 100,      
-    marginBottom: 30,      
+    marginTop: 100,          
+    marginBottom: 30,       
   },
 
   singleButtonWrap: { marginTop: 20 },
@@ -237,6 +237,4 @@ const styles = StyleSheet.create({
   },
   circleText: { fontSize: 28 },
 });
-
-
 
