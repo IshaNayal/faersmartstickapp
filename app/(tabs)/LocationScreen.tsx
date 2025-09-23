@@ -1,61 +1,172 @@
-import React, { useState } from "react";
-import { Image, StyleSheet, Text, View, Switch } from "react-native";
+import React, { useState, useEffect, useRef } from "react";
+import { StyleSheet, Text, TouchableOpacity, View, Alert } from "react-native";
+import MapView, { Marker } from "react-native-maps";
+import * as Location from "expo-location";
+import * as Speech from "expo-speech";
 
-export default function LinkScreen() {
+interface Props {
+  voiceMode: boolean; 
+}
 
-  const [isDeviceOn, setIsDeviceOn] = useState(false);
+export default function LocationScreen({ voiceMode }: Props) {
+  const [step, setStep] = useState<1 | 2 | 3>(1);
+  const [location, setLocation] = useState<{ latitude: number; longitude: number } | null>(null);
+
+  const hasSpoken = useRef(false);
+
+  const nextStep = () => {
+    if (step < 3) setStep((prev) => (prev + 1) as 1 | 2 | 3);
+  };
+
+  const prevStep = () => {
+    if (step > 1) setStep((prev) => (prev - 1) as 1 | 2 | 3);
+  };
+
+  const stepMarginTop = { 1: 80, 2: 40, 3: 40 };
+
+  const getLocation = async () => {
+    let { status } = await Location.requestForegroundPermissionsAsync();
+    if (status !== "granted") {
+      Alert.alert("Permission Denied", "Enable location permissions to use this feature");
+      return;
+    }
+    let loc = await Location.getCurrentPositionAsync({});
+    setLocation({
+      latitude: loc.coords.latitude,
+      longitude: loc.coords.longitude,
+    });
+  };
+
+  useEffect(() => {
+    getLocation();
+  }, []);
+
+  useEffect(() => {
+    if (voiceMode && !hasSpoken.current) {
+      Speech.speak("Voice mode enabled, guiding your journey");
+      hasSpoken.current = true;
+    }
+  }, [voiceMode]);
 
   return (
     <View style={styles.container}>
-      
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Connect Smart Stick</Text>
-        <Text style={styles.sectionDesc}>
-          Pair your smart stick to access features like live location, SOS, and activity updates.
-        </Text>
-      </View>
 
-
-      <View style={styles.deviceStatusRow}>
-        <Text style={styles.deviceStatusText}>Device Status</Text>
-        <View style={styles.switchWrapper}>
-          <Switch
-            value={isDeviceOn}
-            onValueChange={setIsDeviceOn} 
-            thumbColor="#fff"
-            trackColor={{ false: "#102147", true: "#14b8c4" }}
-          />
+      {step === 1 && (
+        <View style={[styles.content, { marginTop: stepMarginTop[1] }]}>
+          <Text style={styles.title}>Launching Navigation Mode: Let the Journey Begin</Text>
+          <Text style={styles.subtitle}>Seamlessly connect and navigate with your smart assistant</Text>
+          <View style={styles.singleButtonWrap}>
+            <TouchableOpacity style={styles.button} onPress={nextStep}>
+              <Text style={styles.buttonText}>Start</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
-      <View style={styles.divider} />
-
-      
-      <Text style={styles.pairedTitle}>Paired Devices</Text>
+      )}
 
  
-      <View style={styles.deviceBox}>
-        <View style={styles.deviceRow}>
-          <Image
-            style={styles.stickIcon}
-            source={{ uri: "https://img.icons8.com/color/48/match-stick.png" }}
-          />
-          <Text style={styles.deviceNameConnected}>Stick123</Text>
-          <Text style={styles.deviceStatusConnected}>✓ connected</Text>
-        </View>
-        <Text style={styles.deviceLastSync}>Last Synced : just Now</Text>
-      </View>
+      {step === 2 && location && (
+        <View style={[styles.content, { marginTop: stepMarginTop[2] }]}>
+          <Text style={styles.title}>Real-time location detected</Text>
+          <Text style={styles.subtitle}>Your position is updated for precise journey guidance</Text>
 
-  
-      <View style={styles.deviceBox}>
-        <View style={styles.deviceRow}>
-          <Image
-            style={styles.stickIcon}
-            source={{ uri: "https://img.icons8.com/color/48/match-stick.png" }}
-          />
-          <Text style={styles.deviceNameNotConnected}>Stick130</Text>
-          <Text style={styles.deviceStatusNotConnected}>Not connected</Text>
+          <MapView
+            style={styles.map}
+            initialRegion={{
+              latitude: location.latitude,
+              longitude: location.longitude,
+              latitudeDelta: 0.01,
+              longitudeDelta: 0.01,
+            }}
+          >
+            <Marker coordinate={location} title="You are here" />
+          </MapView>
+
+       
+          <View style={styles.circleRow}>
+            <TouchableOpacity
+              style={styles.circleButton}
+              onPress={() => {
+                if (voiceMode) {
+                  Speech.speak("Hello! I am your smart assistant giving you guidance.");
+                } else {
+                  Alert.alert("Voice mode is off", "Enable voice mode from the Home screen.");
+                }
+              }}
+            >
+              <Text style={styles.circleText}>🎙️</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.circleButton} onPress={getLocation}>
+              <Text style={styles.circleText}>📍</Text>
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.row}>
+            <TouchableOpacity style={styles.secondaryButton} onPress={prevStep}>
+              <Text style={styles.secondaryText}>Back</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.button} onPress={nextStep}>
+              <Text style={styles.buttonText}>Next</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
+      )}
+
+
+      {step === 3 && location && (
+        <View style={[styles.content, { marginTop: stepMarginTop[3] }]}>
+          <Text style={styles.title}>You’ve reached your destination</Text>
+          <Text style={styles.subtitle}>Guidance completed. We’re glad you got here safely</Text>
+
+          <MapView
+            style={styles.map}
+            initialRegion={{
+              latitude: location.latitude,
+              longitude: location.longitude,
+              latitudeDelta: 0.01,
+              longitudeDelta: 0.01,
+            }}
+          >
+            <Marker coordinate={location} title="Destination" />
+          </MapView>
+
+       
+          <View style={styles.circleRow}>
+            <TouchableOpacity
+              style={styles.circleButton}
+              onPress={() => {
+                if (voiceMode) {
+                  Speech.speak("Congratulations! You’ve reached your destination.");
+                } else {
+                  Alert.alert("Voice mode is off", "Enable voice mode from the Home screen.");
+                }
+              }}
+            >
+              <Text style={styles.circleText}>🎤</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.circleButton}
+              onPress={() => {
+                Alert.alert("😊", "You completed your journey safely!");
+              }}
+            >
+              <Text style={styles.circleText}>😊</Text>
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.row}>
+            <TouchableOpacity style={styles.secondaryButton} onPress={prevStep}>
+              <Text style={styles.secondaryText}>Back</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.button}>
+              <Text style={styles.buttonText}>Done</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      )}
     </View>
   );
 }
@@ -64,101 +175,87 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "rgba(1, 21, 71, 1)",
+  },
+  content: {
+    alignItems: "center",
     paddingHorizontal: 20,
-    paddingTop: 35,
   },
-  section: {
-    marginBottom: 7,
-    justifyContent: "center",
-  },
-  sectionTitle: {
-    color: "#fff",
+  title: {
     fontSize: 20,
     fontWeight: "bold",
-    marginBottom: 30,
     textAlign: "center",
+    marginBottom: 10,
+    color: "#fff",
   },
-  sectionDesc: {
-    color: "#ffffffff",
+  subtitle: {
     fontSize: 20,
+    color: "#fff",
+    textAlign: "center",
+    marginBottom: 20,
   },
-  deviceStatusRow: {
-    flexDirection: "row",
+  button: {
+    backgroundColor: "#14b8c4",
+    paddingVertical: 15,
+    paddingHorizontal: 30,
+    borderRadius: 12,
+    marginTop: 20,
     alignItems: "center",
-    marginTop: 18,
-    marginBottom: 3,
+    marginLeft: 5,
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  singleButtonWrap: {
+    marginTop: 20,
+  },
+  map: {
+    width: "100%",
+    height: 250,
+    marginVertical: 20,
+  },
+  row: {
+    flexDirection: "row",
     justifyContent: "space-between",
+    width: "100%",
+    paddingHorizontal: 10,
   },
-  deviceStatusText: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "#fff",
-  },
-  switchWrapper: {
-    marginRight: 3,
-  },
-  divider: {
-    height: 1,
-    backgroundColor: "#242a4f",
-    marginVertical: 15,
-  },
-  pairedTitle: {
-    color: "#fff",
-    fontWeight: "bold",
-    fontSize: 17,
-    marginBottom: 7,
-  },
-  deviceBox: {
-    backgroundColor: "#d4dbe6",
-    borderRadius: 14,
-    padding: 10,
-    marginBottom: 15,
-  },
-  deviceRow: {
-    flexDirection: "row",
+  secondaryButton: {
+    backgroundColor: "#14b8c4",
+    paddingVertical: 15,
+    paddingHorizontal: 30,
+    borderRadius: 12,
+    marginTop: 20,
     alignItems: "center",
-  },
-  stickIcon: {
-    width: 24,
-    height: 24,
-    marginRight: 8,
-  },
-  deviceNameConnected: {
-    fontWeight: "bold",
-    fontSize: 16,
-    color: "#111d35",
-    marginRight: 7,
-  },
-  deviceStatusConnected: {
-    color: "#29e664",
-    fontWeight: "500",
-    fontSize: 16,
-    marginLeft: 4,
-  },
-  deviceLastSync: {
-    color: "#000000ff",
-    marginLeft: 34,
-    fontSize: 14,
-    marginTop: 2,
-  },
-  deviceNameNotConnected: {
-    fontWeight: "bold",
-    fontSize: 16,
-    color: "#111d35",
     marginRight: 9,
   },
-  deviceStatusNotConnected: {
-    color: "#000000ff",
-    fontSize: 16,
-    fontWeight: "600",
+  secondaryText: {
+    color: "#fff",
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  circleRow: {
+    flexDirection: "row",
+    justifyContent: "center",
+    marginBottom: 20,
+  },
+  circleButton: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: "#14b8c4",
+    justifyContent: "center",
+    alignItems: "center",
+    marginHorizontal: 15,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 3,
+    elevation: 4,
+  },
+  circleText: {
+    fontSize: 28,
   },
 });
-
-
-
-
-
-
-
-
 
