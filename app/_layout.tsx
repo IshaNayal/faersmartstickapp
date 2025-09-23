@@ -22,19 +22,12 @@ export default function RootLayout() {
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found"/>
-        <Stack.Screen name="WelcomeScreen" />
-        <Stack.Screen name="SignInScreen" />
-        <Stack.Screen name="SignUpScreen" />
-        <Stack.Screen name="HomeScreen1" />
-        <Stack.Screen name="LocationScreen" />
-        <Stack.Screen name="AlertScreen" />
-        <Stack.Screen name="LinkScreen" />
-        <Stack.Screen name="SettingsScreen" />
-        <Stack.Screen name="EditProfileScreen" />
-        <Stack.Screen name="ChangePasswordScreen" />
-        <Stack.Screen name="NavigationPreferenceScreen" />  
+        
+       
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>
   );
 }
+
+
