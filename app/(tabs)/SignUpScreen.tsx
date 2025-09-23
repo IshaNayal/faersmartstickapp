@@ -75,7 +75,7 @@ export default function SignUpScreen() {
         <TouchableOpacity onPress={() => router.push("/WelcomeScreen")}>
           <Ionicons name="arrow-back" size={28} color="#fff" />
         </TouchableOpacity>
-        <Text style={styles.header}> Welcome</Text>
+        <Text style={styles.header}>            Smart Stick</Text>
       </View>
 
       <View style={styles.logoContainer}>
