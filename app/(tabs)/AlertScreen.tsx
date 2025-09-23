@@ -8,7 +8,7 @@ export default function EmergencyHelpScreen() {
   const [emergencyContact, setEmergencyContact] = useState<string>("");
   const [currentLocation, setCurrentLocation] = useState<{ latitude: number; longitude: number } | null>(null);
 
- 
+  // Load emergency contact from AsyncStorage
   useEffect(() => {
     const loadEmergencyContact = async () => {
       try {
@@ -21,7 +21,7 @@ export default function EmergencyHelpScreen() {
     loadEmergencyContact();
   }, []);
 
-
+  // Get user location
   useEffect(() => {
     const getLocation = async () => {
       try {
@@ -61,7 +61,7 @@ export default function EmergencyHelpScreen() {
     let message = "I need emergency help! Please respond.";
 
     try {
-      
+      // Fetch live location before sending SMS
       const { status } = await Location.requestForegroundPermissionsAsync();
       if (status === "granted") {
         const location = await Location.getCurrentPositionAsync({});
@@ -126,3 +126,4 @@ const styles = StyleSheet.create({
   button: { backgroundColor: "#14b8c4", padding: 15, borderRadius: 5, width: "80%", alignItems: "center", marginVertical: 10 },
   buttonText: { color: "#fff", fontSize: 16, fontWeight: "bold" },
 });
+
