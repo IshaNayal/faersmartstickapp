@@ -208,7 +208,7 @@ const styles = StyleSheet.create({
   checkboxRow: { flexDirection: "row", alignItems: "center", marginVertical: 10 },
   checkboxText: { flex: 1, fontSize: 14, color: "#333" },
   forgotText: { fontSize: 14, color: "#00ccff", fontWeight: "bold" },
-  signInButton: { backgroundColor: "#00ccff", paddingVertical: 15, borderRadius: 8, alignItems: "center", marginVertical: 10 },
+  signInButton: { backgroundColor: "#00cfc1", paddingVertical: 15, borderRadius: 8, alignItems: "center", marginVertical: 10 },
   signInText: { color: "#fff", fontWeight: "bold", fontSize: 18 },
   orContainer: { flexDirection: "row", alignItems: "center", marginVertical: 20 },
   orLine: { flex: 1, height: 1, backgroundColor: "#ccc" },
