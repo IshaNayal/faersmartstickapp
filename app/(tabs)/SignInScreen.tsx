@@ -30,13 +30,13 @@ export default function SignInScreen() {
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
 
- 
+  
   const [request, response, promptAsync] = Google.useAuthRequest({
     clientId:
       "789677158308-jqq7lllh7d8jpc0gheok1atmtg3qdo8m.apps.googleusercontent.com",
        scopes: ["profile", "email"],
       
-   
+    
   });
 
   useEffect(() => {
@@ -57,7 +57,7 @@ export default function SignInScreen() {
     }
   }, [response]);
 
- 
+
   const handleSignIn = async () => {
     if (!email || !password) {
       Alert.alert("Missing fields", "Please enter email and password.");
@@ -78,7 +78,7 @@ export default function SignInScreen() {
     }
   };
 
- 
+
   const handleForgotPassword = async () => {
     if (!email) {
       Alert.alert(
@@ -216,3 +216,4 @@ const styles = StyleSheet.create({
   socialButtons: { flexDirection: "row", justifyContent: "space-around" },
   socialButton: { width: 50, height: 50, borderRadius: 25, backgroundColor: "#fff", justifyContent: "center", alignItems: "center", borderWidth: 1, borderColor: "#ddd" },
 });
+
