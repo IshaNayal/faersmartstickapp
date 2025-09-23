@@ -1,3 +1,4 @@
+// NavigationPreferenceScreen.tsx
 import { Ionicons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
@@ -38,7 +39,6 @@ export default function NavigationPreferencesScreen() {
     loadPreferences();
   }, []);
 
-
   useEffect(() => {
     const savePreferences = async () => {
       try {
@@ -63,15 +63,7 @@ export default function NavigationPreferencesScreen() {
         Navigation Preferences
       </Text>
 
-      <View style={styles.row}>
-        <Text style={styles.rowText}>Voice Guidance</Text>
-        <Switch
-          value={voice}
-          onValueChange={setVoice}
-          trackColor={{ false: "#3f3d3d", true: "#14b8c4" }}
-          thumbColor={voice ? "#14b8c4" : "#fff"}
-        />
-      </View>
+      
 
       <View style={styles.row}>
         <Text style={styles.rowText}>Vibration Alerts</Text>
