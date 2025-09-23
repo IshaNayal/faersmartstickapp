@@ -36,7 +36,7 @@ export default function EditProfileScreen() {
 
   const handleSave = async () => {
     try {
-      
+      // Validate emergency contact
       if (emergencyContact && !/^\d{10}$/.test(emergencyContact)) {
         Alert.alert("Invalid number", "Please enter a valid 10-digit phone number.");
         return;
@@ -59,13 +59,13 @@ export default function EditProfileScreen() {
         { merge: true }
       );
 
-     
+      // Update Firebase Auth profile/email
       await updateProfile(user, { displayName: userName });
       if (user.email !== userEmail) {
         await updateEmail(user, userEmail);
       }
 
-      
+      // Save emergency contact locally
       await AsyncStorage.setItem("emergencyNumber", emergencyContact);
 
       Alert.alert("Success", "Profile updated successfully!");
@@ -166,6 +166,9 @@ const styles = StyleSheet.create({
   },
   logoutText: { color: "#000", fontSize: 16, fontWeight: "bold" },
 });
+
+
+
 
 
 
