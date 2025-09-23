@@ -106,7 +106,7 @@ export default function SignInScreen() {
         <TouchableOpacity onPress={() => router.push("/WelcomeScreen")}>
           <Ionicons name="arrow-back" size={28} color="#ffffff" />
         </TouchableOpacity>
-        <Text style={styles.header}> Welcome</Text>
+        <Text style={styles.header}>             Smart Stick</Text>
       </View>
 
       <View style={styles.logoContainer}>
@@ -196,7 +196,7 @@ export default function SignInScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "rgba(1, 21, 71, 1)", alignItems: "center", paddingTop: 40 },
   headerRow: { flexDirection: "row", alignItems: "center", marginBottom: 10, width: "100%", paddingHorizontal: 20 },
-  header: { fontSize: 24, color: "#00ccff", marginLeft: 10 },
+  header: { fontSize: 24, color: "#14b8c4", marginLeft: 10 },
   logoContainer: { width: 80, height: 80, borderRadius: 40, backgroundColor: "#f0f0f0", alignItems: "center", justifyContent: "center", marginBottom: 40, zIndex: 1 },
   logo: { fontWeight: "bold", color: "#001f3f" },
   card: { backgroundColor: "#e0e0e0", borderRadius: 12, width: "90%", padding: 30, alignItems: "stretch", shadowColor: "#000", shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.1, shadowRadius: 4, elevation: 3, maxHeight: "70%" },
@@ -216,3 +216,4 @@ const styles = StyleSheet.create({
   socialButtons: { flexDirection: "row", justifyContent: "space-around" },
   socialButton: { width: 50, height: 50, borderRadius: 25, backgroundColor: "#fff", justifyContent: "center", alignItems: "center", borderWidth: 1, borderColor: "#ddd" },
 });
+
