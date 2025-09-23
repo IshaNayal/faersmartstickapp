@@ -8,7 +8,7 @@ export default function EmergencyHelpScreen() {
   const [emergencyContact, setEmergencyContact] = useState<string>("");
   const [currentLocation, setCurrentLocation] = useState<{ latitude: number; longitude: number } | null>(null);
 
-  
+
   useEffect(() => {
     const loadEmergencyContact = async () => {
       try {
