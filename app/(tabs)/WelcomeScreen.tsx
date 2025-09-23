@@ -14,7 +14,7 @@ export default function WelcomeScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>Welcome</Text>
+      <Text style={styles.title}>Smart Stick</Text>
 
       <View style={styles.logoContainer}>
         <Text style={styles.logoText}>LOGO</Text>
