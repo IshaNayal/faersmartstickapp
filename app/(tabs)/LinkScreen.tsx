@@ -7,14 +7,13 @@ export default function LinkScreen() {
 
   return (
     <View style={styles.container}>
-  
+
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Connect Smart Stick</Text>
         <Text style={styles.sectionDesc}>
           Pair your smart stick to access features like live location, SOS, and activity updates.
         </Text>
       </View>
-
 
       <View style={styles.deviceStatusRow}>
         <Text style={styles.deviceStatusText}>Device Status</Text>
@@ -29,7 +28,7 @@ export default function LinkScreen() {
       </View>
       <View style={styles.divider} />
 
-    
+      
       <Text style={styles.pairedTitle}>Paired Devices</Text>
 
      
@@ -45,7 +44,7 @@ export default function LinkScreen() {
         <Text style={styles.deviceLastSync}>Last Synced : just Now</Text>
       </View>
 
- 
+  
       <View style={styles.deviceBox}>
         <View style={styles.deviceRow}>
           <Image
@@ -153,6 +152,9 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
 });
+
+
+
 
 
 
